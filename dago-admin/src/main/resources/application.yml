@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: dev
+  application: 
+    name: dayu-app
+    description: dayu-APP接口
+    version: 0.0.1-SNAPSHOT
+
+management: 
+  security: 
+    enabled: true
+
+
+server:
+  port: 8080
