@@ -2,14 +2,21 @@ spring:
   profiles:
     active: dev
   application: 
-    name: dayu-app
-    description: dayu-APP接口
+    name: dago-application
+    description: dago平台接口
     version: 0.0.1-SNAPSHOT
 
 management: 
   security: 
     enabled: true
 
+
+info:
+  build:
+    artifact: @project.artifactId@
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
 
 server:
   port: 8080
