@@ -1,22 +1,21 @@
 spring:
   profiles:
     active: dev
-  application: 
+  application:
     name: dago-application
     description: dago平台接口
     version: 0.0.1-SNAPSHOT
-
-management: 
-  security: 
+management:
+  security:
     enabled: true
-
-
-#info:
-#  build:
-#    artifact: @project.artifactId@
-#    name: @project.name@
-#   description: @project.description@
-#    version: @project.version@
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.winter.model
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
 server:
   port: 8080
