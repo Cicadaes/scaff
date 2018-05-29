@@ -15,6 +15,7 @@ java -jar xxxx.jar stop
 
 # 调试相关
 ## swagger-ui
-<a href="http://localhost:8080/swagger/index.html">swagger-ui访问地址</a><br>
+[swagger-ui访问地址](http://localhost:8080/swagger/index.html)  
+[api访问地址](http://localhost:8080/v2/api-docs)  
 
-<a href="http://localhost:8080/v2/api-docs">api访问地址</a>
+
