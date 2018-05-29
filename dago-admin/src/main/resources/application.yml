@@ -11,12 +11,12 @@ management:
     enabled: true
 
 
-info:
-  build:
-    artifact: @project.artifactId@
-    name: @project.name@
-    description: @project.description@
-    version: @project.version@
+#info:
+#  build:
+#    artifact: @project.artifactId@
+#    name: @project.name@
+#   description: @project.description@
+#    version: @project.version@
 
 server:
   port: 8080

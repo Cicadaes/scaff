@@ -2,15 +2,25 @@ package com.surfilter.ps.web;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.surfilter.ps.config.web.ApiVersion;
+import com.surfilter.ps.domain.Demo;
 
-@Controller
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+@Api(tags = "示例")
+@RestController
 @RequestMapping("/{version}/")
 public class HelloController {
+	
+	
+	@ApiOperation(value = "hello/查询1", notes = "hello/查询1", response = String.class)
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "返回Api", response = String.class)})
 	@RequestMapping("hello/")
     @ApiVersion(1)
     @ResponseBody
@@ -18,7 +28,7 @@ public class HelloController {
         System.out.println("haha1..........");
         return "hello1";
     }
-     
+	
     @RequestMapping("hello/")
     @ApiVersion(2)
     @ResponseBody
@@ -26,13 +36,22 @@ public class HelloController {
         System.out.println("haha2.........");
         return "hello2";
     }
-     
+    
     @RequestMapping("hello/")
     @ApiVersion(5)
     @ResponseBody
     public String hello5(HttpServletRequest request){
         System.out.println("haha5........."); 
         return "hello5";
+    }
+    
+    @ApiOperation(value = "hello/查询10", notes = "hello/查询10", response = Demo.class)
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "返回Api", response = Demo.class)})
+	@RequestMapping("hello2/")
+    @ResponseBody
+    public Demo helloDomain(Demo demo){
+        System.out.println("haha10..........");
+        return new Demo();
     }
 
 }
