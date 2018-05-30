@@ -3,14 +3,18 @@ package com.surfilter.ps.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseExample {
+public class RDatabaseExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public DatabaseExample() {
+    private Integer limit;
+
+    private Integer offset;
+
+    public RDatabaseExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -61,6 +65,22 @@ public class DatabaseExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setOffset(Integer offset) {
+        this.offset = offset;
+    }
+
+    public Integer getOffset() {
+        return offset;
     }
 
     protected abstract static class GeneratedCriteria {
@@ -835,6 +855,8 @@ public class DatabaseExample {
         }
     }
 
+    /**
+     */
     public static class Criteria extends GeneratedCriteria {
 
         protected Criteria() {

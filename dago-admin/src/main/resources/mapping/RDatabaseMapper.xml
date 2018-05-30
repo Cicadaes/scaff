@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.surfilter.ps.mapper.DatabaseMapper">
-  <resultMap id="BaseResultMap" type="com.surfilter.ps.model.Database">
+<mapper namespace="com.surfilter.ps.mapper.RDatabaseMapper">
+  <resultMap id="BaseResultMap" type="com.surfilter.ps.model.RDatabase">
     <id column="ID_DATABASE" jdbcType="BIGINT" property="idDatabase" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="ID_DATABASE_TYPE" jdbcType="INTEGER" property="idDatabaseType" />
@@ -14,7 +14,7 @@
     <result column="DATA_TBS" jdbcType="VARCHAR" property="dataTbs" />
     <result column="INDEX_TBS" jdbcType="VARCHAR" property="indexTbs" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.surfilter.ps.model.Database">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.surfilter.ps.model.RDatabase">
     <result column="DATABASE_NAME" jdbcType="LONGVARCHAR" property="databaseName" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -82,12 +82,11 @@
   <sql id="Blob_Column_List">
     DATABASE_NAME
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.surfilter.ps.model.DatabaseExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.surfilter.ps.model.RDatabaseExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
     </if>
-    'true' as QUERYID,
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -99,12 +98,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.surfilter.ps.model.DatabaseExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.surfilter.ps.model.RDatabaseExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
-    'true' as QUERYID,
     <include refid="Base_Column_List" />
     from r_database
     <if test="_parameter != null">
@@ -112,6 +110,14 @@
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
@@ -126,13 +132,13 @@
     delete from r_database
     where ID_DATABASE = #{idDatabase,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.surfilter.ps.model.DatabaseExample">
+  <delete id="deleteByExample" parameterType="com.surfilter.ps.model.RDatabaseExample">
     delete from r_database
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.surfilter.ps.model.Database">
+  <insert id="insert" parameterType="com.surfilter.ps.model.RDatabase">
     insert into r_database (ID_DATABASE, NAME, ID_DATABASE_TYPE, 
       ID_DATABASE_CONTYPE, HOST_NAME, PORT, 
       USERNAME, PASSWORD, SERVERNAME, 
@@ -144,7 +150,7 @@
       #{dataTbs,jdbcType=VARCHAR}, #{indexTbs,jdbcType=VARCHAR}, #{databaseName,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.surfilter.ps.model.Database">
+  <insert id="insertSelective" parameterType="com.surfilter.ps.model.RDatabase">
     insert into r_database
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idDatabase != null">
@@ -223,7 +229,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.surfilter.ps.model.DatabaseExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.surfilter.ps.model.RDatabaseExample" resultType="java.lang.Long">
     select count(*) from r_database
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -308,7 +314,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.surfilter.ps.model.Database">
+  <update id="updateByPrimaryKeySelective" parameterType="com.surfilter.ps.model.RDatabase">
     update r_database
     <set>
       <if test="name != null">
@@ -347,7 +353,7 @@
     </set>
     where ID_DATABASE = #{idDatabase,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.surfilter.ps.model.Database">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.surfilter.ps.model.RDatabase">
     update r_database
     set NAME = #{name,jdbcType=VARCHAR},
       ID_DATABASE_TYPE = #{idDatabaseType,jdbcType=INTEGER},
@@ -362,7 +368,7 @@
       DATABASE_NAME = #{databaseName,jdbcType=LONGVARCHAR}
     where ID_DATABASE = #{idDatabase,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.surfilter.ps.model.Database">
+  <update id="updateByPrimaryKey" parameterType="com.surfilter.ps.model.RDatabase">
     update r_database
     set NAME = #{name,jdbcType=VARCHAR},
       ID_DATABASE_TYPE = #{idDatabaseType,jdbcType=INTEGER},
