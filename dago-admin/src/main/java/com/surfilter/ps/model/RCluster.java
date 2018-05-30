@@ -2,12 +2,15 @@ package com.surfilter.ps.model;
 
 import java.io.Serializable;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * r_cluster
  * 
  * @author
  */
 public class RCluster implements Serializable {
+	@ApiModelProperty(value="集群id",name="idCluster",example="1")
 	private Long idCluster;
 
 	private String name;
