@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author xuxueli 2017-04-28
  */
-@Configuration
+//@Configuration
 public class XxlConfConfig {
     private Logger logger = LoggerFactory.getLogger(XxlConfConfig.class);
 
