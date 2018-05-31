@@ -6,7 +6,7 @@ spring:
     name: dago
     url: jdbc:mysql://172.31.28.101:3306/dago?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: root
-    password: 123456
+    password: rzx!@!*wh
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
     filters: stat

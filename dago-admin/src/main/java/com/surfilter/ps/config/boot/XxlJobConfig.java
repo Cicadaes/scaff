@@ -1,13 +1,8 @@
 package com.surfilter.ps.config.boot;
 
-import com.xxl.conf.core.spring.XxlConfFactory;
-import com.xxl.job.admin.core.schedule.XxlJobDynamicScheduler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 /**
  * All rights Reserved, Designed By www.1218.com.cn

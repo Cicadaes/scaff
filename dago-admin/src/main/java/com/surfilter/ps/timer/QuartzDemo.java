@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.surfilter.ps.service.DemoService;
 
-@Component
-@EnableScheduling
+//@Component
+//@EnableScheduling
 public class QuartzDemo {
 	@Autowired
 	DemoService demoService;
