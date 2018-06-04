@@ -2,7 +2,13 @@ package com.surfilter.ps.config.boot;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.xxl.job.admin.service.XxlJobService;
+import com.xxl.job.admin.service.impl.AdminBizImpl;
+import com.xxl.job.admin.service.impl.XxlJobServiceImpl;
+import com.xxl.job.core.biz.AdminBiz;
 
 /**
  * All rights Reserved, Designed By www.1218.com.cn
@@ -20,6 +26,15 @@ import org.springframework.context.annotation.Configuration;
 public class XxlJobConfig {
 
     private Logger logger = LoggerFactory.getLogger(XxlConfConfig.class);
+    
+    @Bean
+    public AdminBiz adminBiz() {
+    	return new AdminBizImpl();
+    }
+    @Bean
+    public XxlJobService xxlJobService() {
+    	return new XxlJobServiceImpl();
+    }
 
 
 }
