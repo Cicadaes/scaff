@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: dago-application
     description: dago平台接口
@@ -11,6 +11,7 @@ management:
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.winter.model
+  
 pagehelper:
   helperDialect: mysql
   reasonable: true

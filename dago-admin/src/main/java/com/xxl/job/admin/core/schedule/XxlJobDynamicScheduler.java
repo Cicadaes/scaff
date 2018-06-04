@@ -41,7 +41,7 @@ public final class XxlJobDynamicScheduler implements ApplicationContextAware {
 		XxlJobDynamicScheduler.scheduler = scheduler;
 	}
 
-	// accessToken
+	// 访问秘钥
     private static String accessToken;
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
@@ -254,7 +254,7 @@ public final class XxlJobDynamicScheduler implements ApplicationContextAware {
             scheduler.scheduleJob(jobDetail, triggerSet, true);
         }
 
-        logger.info(">>>>>>>>>>> resumeJob success, JobGroup:{}, JobName:{}", jobGroup, jobName);
+        logger.info(">>>>>>>>>>> 移除任务成功, JobGroup:{}, JobName:{}", jobGroup, jobName);
         return true;
     }
     
@@ -272,13 +272,13 @@ public final class XxlJobDynamicScheduler implements ApplicationContextAware {
         boolean result = false;
         if (checkExists(jobName, jobGroup)) {
             result = scheduler.unscheduleJob(triggerKey);
-            logger.info(">>>>>>>>>>> removeJob, triggerKey:{}, result [{}]", triggerKey, result);
+            logger.info(">>>>>>>>>>> 移除任务, triggerKey:{}, result [{}]", triggerKey, result);
         }
         return true;
     }
 
     /**
-     * pause
+     * 暂停任务
      *
      * @param jobName
      * @param jobGroup
@@ -293,9 +293,9 @@ public final class XxlJobDynamicScheduler implements ApplicationContextAware {
         if (checkExists(jobName, jobGroup)) {
             scheduler.pauseTrigger(triggerKey);
             result = true;
-            logger.info(">>>>>>>>>>> pauseJob success, triggerKey:{}", triggerKey);
+            logger.info(">>>>>>>>>>> 暂停任务成功 success, triggerKey:{}", triggerKey);
         } else {
-        	logger.info(">>>>>>>>>>> pauseJob fail, triggerKey:{}", triggerKey);
+        	logger.info(">>>>>>>>>>> 暂停任务成功 fail, triggerKey:{}", triggerKey);
         }
         return result;
     }
