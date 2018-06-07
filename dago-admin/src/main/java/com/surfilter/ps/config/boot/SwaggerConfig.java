@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-@ConditionalOnProperty(prefix = "springfox", value = "enable", matchIfMissing = true)
+//@ConditionalOnProperty(prefix = "springfox", value = "enable", matchIfMissing = true)
 public class SwaggerConfig {
 	
 	@Bean
@@ -24,6 +24,7 @@ public class SwaggerConfig {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(apiInfo())
                 .select()
+//                .apis(RequestHandlerSelectors.basePackage("com.xxl.job.admin.controller"))
                 .apis(RequestHandlerSelectors.basePackage("com.surfilter.ps.web"))
                 .paths(PathSelectors.any())
                 .build()

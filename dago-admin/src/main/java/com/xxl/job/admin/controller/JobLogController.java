@@ -11,6 +11,12 @@ import com.xxl.job.core.biz.ExecutorBiz;
 import com.xxl.job.core.biz.model.LogResult;
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.rpc.netcom.NetComClientProxy;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.slf4j.Logger;
@@ -67,6 +73,8 @@ public class JobLogController {
 		return new ReturnT<List<XxlJobInfo>>(list);
 	}
 	
+	@ApiOperation(value = "查询接口", notes = "查询接口")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "返回Api", response = String.class)})
 	@RequestMapping("/pageList")
 	@ResponseBody
 	public Map<String, Object> pageList(@RequestParam(required = false, defaultValue = "0") int start,  
@@ -116,6 +124,8 @@ public class JobLogController {
 		return "joblog/joblog.detail";
 	}
 
+	@ApiOperation(value = "查询接口", notes = "查询接口")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "返回Api", response = String.class)})
 	@RequestMapping("/logDetailCat")
 	@ResponseBody
 	public ReturnT<LogResult> logDetailCat(String executorAddress, long triggerTime, int logId, int fromLineNum){
@@ -138,6 +148,8 @@ public class JobLogController {
 		}
 	}
 
+	@ApiOperation(value = "查询接口", notes = "查询接口")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "返回Api", response = String.class)})
 	@RequestMapping("/logKill")
 	@ResponseBody
 	public ReturnT<String> logKill(int id){
@@ -171,7 +183,8 @@ public class JobLogController {
 			return new ReturnT<String>(500, runResult.getMsg());
 		}
 	}
-
+	@ApiOperation(value = "查询接口", notes = "查询接口")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "返回Api", response = String.class)})
 	@RequestMapping("/clearLog")
 	@ResponseBody
 	public ReturnT<String> clearLog(int jobGroup, int jobId, int type){

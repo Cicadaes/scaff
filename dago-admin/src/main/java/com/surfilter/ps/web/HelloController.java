@@ -2,6 +2,7 @@ package com.surfilter.ps.web;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,7 @@ public class HelloController {
 	
 	@ApiOperation(value = "hello/查询1", notes = "hello/查询1", response = String.class)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "返回Api", response = String.class)})
-	@RequestMapping("hello/")
+	@GetMapping("hello/")
     @ApiVersion(1)
     @ResponseBody
     public String hello(HttpServletRequest request){
@@ -29,7 +30,7 @@ public class HelloController {
         return "hello1";
     }
 	
-    @RequestMapping("hello/")
+	@GetMapping("hello/")
     @ApiVersion(2)
     @ResponseBody
     public String hello2(HttpServletRequest request){
@@ -37,7 +38,7 @@ public class HelloController {
         return "hello2";
     }
     
-    @RequestMapping("hello/")
+	@GetMapping("hello/")
     @ApiVersion(5)
     @ResponseBody
     public String hello5(HttpServletRequest request){
@@ -47,7 +48,7 @@ public class HelloController {
     
     @ApiOperation(value = "hello/查询10", notes = "hello/查询10", response = Demo.class)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "返回Api", response = Demo.class)})
-	@RequestMapping("hello2/")
+    @GetMapping("hello2/")
     @ResponseBody
     public Demo helloDomain(Demo demo){
         System.out.println("haha10..........");

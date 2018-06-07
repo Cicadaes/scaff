@@ -5,12 +5,19 @@ import com.xxl.job.admin.controller.interceptor.PermissionInterceptor;
 import com.xxl.job.admin.core.util.PropertiesUtil;
 import com.xxl.job.admin.service.XxlJobService;
 import com.xxl.job.core.biz.model.ReturnT;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +28,7 @@ import java.util.Map;
  * index controller
  * @author xuxueli 2015-12-19 16:13:16
  */
+@Api(tags = "首页")
 @Controller
 public class IndexController {
 
@@ -29,13 +37,16 @@ public class IndexController {
 
 	@RequestMapping("/")
 	public String index(Model model) {
-
 		Map<String, Object> dashboardMap = xxlJobService.dashboardInfo();
 		model.addAllAttributes(dashboardMap);
 
 		return "index";
 	}
-
+	
+	
+	
+	@ApiOperation(value = "hello/查询1", notes = "hello/查询1", response = String.class)
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "返回Api", response = ReturnT.class)})
     @RequestMapping("/triggerChartDate")
 	@ResponseBody
 	public ReturnT<Map<String, Object>> triggerChartDate() {
