@@ -1,4 +1,4 @@
-package com.xxl.job.executor.service.jobhandler;
+package com.surfilter.ps.service;
 
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.IJobHandler;
@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 任务Handler示例（Bean模式）
- *
  * 开发步骤：
  * 1、继承"IJobHandler"：“com.xxl.job.core.handler.IJobHandler”；
  * 2、注册到Spring容器：添加“@Component”注解，被Spring容器扫描为Bean实例；

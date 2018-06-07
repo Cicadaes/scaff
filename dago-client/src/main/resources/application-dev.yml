@@ -9,7 +9,8 @@ xxl:
     localprop:
       location: null
   job:
-    admin: addresses:http://127.0.0.1:8080/xxl-job-admin
+    admin: 
+      addresses: http://127.0.0.1:8080/xxl-job-admin
     executor:
       appname: xxl-job-executor-sample
       ip: null

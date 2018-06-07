@@ -1,4 +1,4 @@
-package com.xxl.job.executor.service.jobhandler;
+package com.surfilter.ps.service;
 
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.IJobHandler;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * 分片广播任务
- *
  * @author xuxueli 2017-07-25 20:56:50
  */
 @JobHandler(value="shardingJobHandler")

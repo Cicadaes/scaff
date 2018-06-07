@@ -21,7 +21,6 @@ import org.springframework.context.ApplicationContext;
 
 /**
  * Hello world!
- *
  */
 @SpringBootApplication
 @EnableAutoConfiguration
