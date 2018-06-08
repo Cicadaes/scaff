@@ -1,0 +1,13 @@
+${AnsiColor.BRIGHT_GREEN}
+ ____              __ _ _ _            
+ / ___| _   _ _ __ / _(_) | |_ ___ _ __ 
+ \___ \| | | | '__| |_| | | __/ _ \ '__|
+  ___) | |_| | |  |  _| | | ||  __/ |   
+ |____/ \__,_|_|  |_| |_|_|\__\___|_|   
+                                        
+版本信息:
+${AnsiColor.BRIGHT_RED}
+Application Name: ${spring.application.name} (${spring.application.description})
+Application Version: ${spring.application.version}${application.formatted-version}
+Spring Boot Version: ${spring-boot.version}${spring-boot.formatted-version}
+

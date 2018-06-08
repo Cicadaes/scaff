@@ -10,9 +10,9 @@ import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 @Configuration
 public class DataSourceConfig {
 	
-	@Bean
-	public DataSource dataSourceTwo(){
-	    return DruidDataSourceBuilder.create().build();
-	}
+//	@Bean
+//	public DataSource dataSourceTwo(){
+//	    return DruidDataSourceBuilder.create().build();
+//	}
 
 }

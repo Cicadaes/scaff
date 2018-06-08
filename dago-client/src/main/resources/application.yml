@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: dago-client
+    description: dago平台代理模块
+    version: 0.0.1-SNAPSHOT
+management:
+  security:
+    enabled: true
+server:
+  port: 8081

@@ -9,13 +9,16 @@ management:
   security:
     enabled: true
 mybatis:
-  mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.winter.model
+  config-locations: classpath:config/mybatis-config.xml
+  mapper-locations: classpath:mapping/**/*.xml
+  type-aliases-package: com.surfilter.ps.**.entity
+  
 pagehelper:
   helperDialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+
 
 server:
   port: 8080
