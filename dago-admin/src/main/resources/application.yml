@@ -19,5 +19,6 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
 
+
 server:
   port: 8080
