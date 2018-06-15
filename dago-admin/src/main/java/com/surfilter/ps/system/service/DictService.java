@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.surfilter.ps.system.mapper.DictMapper;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,7 +28,7 @@ import com.surfilter.gacenter.repository.system.dict.DictDao;
 public class DictService {
 	
 	@Autowired
-	private DictDao dictDao;
+	private DictMapper dictMapper;
 	
 	private static final Logger logger = LoggerFactory.getLogger(DictService.class);
 	
