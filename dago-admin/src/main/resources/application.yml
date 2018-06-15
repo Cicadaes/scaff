@@ -6,19 +6,26 @@ spring:
     description: dago平台接口
     version: 0.0.1-SNAPSHOT
 management:
-  security:
-    enabled: true
+  server:
+    port: 9001
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    enabled-by-default: true
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
 mybatis:
   config-locations: classpath:config/mybatis-config.xml
   mapper-locations: classpath:mapping/**/*.xml
   type-aliases-package: com.surfilter.ps.**.entity
-  
 pagehelper:
   helperDialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
-
-
 server:
   port: 8080

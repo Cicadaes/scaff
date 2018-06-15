@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: dago-application
+    description: dago平台接口
+    version: 0.0.1-SNAPSHOT
+management:
+  server:
+    port: 9001
+  endpoints:
+    web:
+      base-path: /monitor
+    enabled-by-default: false
+    web:
+      exposure:
+        include=*
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+server:
+  port: 8080

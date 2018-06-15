@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.surfilter.gacenter.entity.system.dict.DictVo;
-import com.surfilter.ps.core.mybatis.MyBatisCrudRepository;
 import com.surfilter.ps.system.entity.Dict;
 
 /**
@@ -67,8 +65,6 @@ public interface DictMapper {
 	 * @return
 	 */
 	Dict findIdByTypeAndName(Map<String, Object> queryMap);
-
-	List<DictVo> findByType(String type);
 
 	/**
 	 * 根据类型查字典名称和值（源数据通用字典查询接口；author：李强）

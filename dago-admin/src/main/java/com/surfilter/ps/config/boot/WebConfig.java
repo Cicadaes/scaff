@@ -12,14 +12,14 @@ import com.surfilter.ps.config.web.CustomRequestMappingHandlerMapping;
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport{
 	
-	@Override
-    @Bean
-    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
-        RequestMappingHandlerMapping handlerMapping = new CustomRequestMappingHandlerMapping();
-        handlerMapping.setOrder(0);
-        handlerMapping.setInterceptors(getInterceptors());
-        return handlerMapping;
-    }
+//	@Override
+//    @Bean
+//    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
+//        RequestMappingHandlerMapping handlerMapping = new CustomRequestMappingHandlerMapping();
+//        handlerMapping.setOrder(0);
+//        handlerMapping.setInterceptors(getInterceptors());
+//        return handlerMapping;
+//    }
 	
 	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
