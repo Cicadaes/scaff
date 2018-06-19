@@ -17,10 +17,9 @@ import com.surfilter.ps.system.mapper.DictMapper;
  */
 @Service
 public class DictService {
-
 	@Autowired
 	private DictMapper dictMapper;
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(DictService.class);
 
 }

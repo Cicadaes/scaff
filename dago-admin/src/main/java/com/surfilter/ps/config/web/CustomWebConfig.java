@@ -2,9 +2,9 @@ package com.surfilter.ps.config.web;
 
 import org.apache.catalina.filters.RemoteIpFilter;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 /**
@@ -20,7 +20,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
  * 注意：本内容仅限于任子行网络技术股份有限公司内部传阅，禁止外泄以及用于其他的商业目
  */
 //@Configuration
-public class CustomWebConfig extends WebMvcConfigurerAdapter {
+public class CustomWebConfig extends WebMvcConfigurationSupport {
 
     @Bean
     public RemoteIpFilter remoteIpFilter() {
@@ -36,4 +36,13 @@ public class CustomWebConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
+
+	@Override
+	protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+//		super.addResourceHandlers(registry);
+	}
+    
+    
 }
