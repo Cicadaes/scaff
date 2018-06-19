@@ -66,15 +66,10 @@ public interface DictMapper {
 	 */
 	Dict findIdByTypeAndName(Map<String, Object> queryMap);
 
-<<<<<<< HEAD
-	List<Dict> findByType(String type);
-
-=======
->>>>>>> 6a2d76dfb6aafb752789b1908ff1a26d4f06803f
 	/**
 	 * 根据类型查字典名称和值（源数据通用字典查询接口；author：李强）
 	 * 
-	 * @param string
+	 * @param type
 	 * @return
 	 */
 	List<Map<String, Object>> getNameAndValueByType(String type);
