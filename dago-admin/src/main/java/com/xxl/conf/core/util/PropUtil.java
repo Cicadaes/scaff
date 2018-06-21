@@ -1,14 +1,17 @@
 package com.xxl.conf.core.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.util.Properties;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * prop util
@@ -18,25 +21,30 @@ import java.util.Properties;
 public class PropUtil {
     private static Logger logger = LoggerFactory.getLogger(PropUtil.class);
 
+    /**
+     * load prop
+     *
+     * @param propertyFileName disk path when start with "file:", other classpath
+     * @return
+     */
     public static Properties loadProp(String propertyFileName) {
         Properties prop = new Properties();
         InputStream in = null;
         try {
 
             // load file location, disk or resource
-            URL url = null;
             if (propertyFileName.startsWith("file:")) {
-                url = new File(propertyFileName.substring("file:".length())).toURI().toURL();
+                URL url = new File(propertyFileName.substring("file:".length())).toURI().toURL();
+                in = new FileInputStream(url.getPath());
             } else {
                 ClassLoader loder = Thread.currentThread().getContextClassLoader();
-                url = loder.getResource(propertyFileName);
+                /*URL url = loder.getResource(propertyFileName);
+                in = new FileInputStream(url.getPath());*/
+                in = loder.getResourceAsStream(propertyFileName);
             }
-
-            if (url != null) {
-                in = new FileInputStream(url.getPath());
-                if (in != null) {
-                    prop.load(in);
-                }
+            if (in != null) {
+                //prop.load(in);
+                prop.load(new InputStreamReader(in, "utf-8"));
             }
         } catch (IOException e) {
             logger.error(">>>>>>>>>> xxl-conf, PropUtil load prop fail [{}], error msg:{}", propertyFileName, e.getMessage());
@@ -50,6 +58,35 @@ public class PropUtil {
             }
         }
         return prop;
+    }
+
+    /**
+     * write prop to disk
+     *
+     * @param properties
+     * @param filePathName
+     * @return
+     */
+    public static boolean writeProp(Properties properties, String filePathName){
+        FileOutputStream fileOutputStream = null;
+        try {
+            //properties.store(new FileWriter(filePathName), null);
+
+            fileOutputStream = new FileOutputStream(filePathName, false);
+            properties.store(new OutputStreamWriter(fileOutputStream, "utf-8"), null);
+            return true;
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+            return false;
+        } finally {
+            if (fileOutputStream != null) {
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e) {
+                    logger.error(e.getMessage(), e);
+                }
+            }
+        }
     }
 
 }

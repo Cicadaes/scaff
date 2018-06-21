@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.surfilter.ps.config.web.ApiVersion;
 import com.surfilter.ps.core.entity.PageResult;
 import com.surfilter.ps.kettle.entity.Database;
 

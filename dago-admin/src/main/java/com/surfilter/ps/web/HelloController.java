@@ -3,11 +3,9 @@ package com.surfilter.ps.web;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.surfilter.ps.config.web.ApiVersion;
 import com.surfilter.ps.domain.Demo;
 
 import io.swagger.annotations.Api;

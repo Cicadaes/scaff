@@ -1,10 +1,10 @@
 package com.xxl.job.admin.core.model;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Created by xuxueli on 16/9/30.

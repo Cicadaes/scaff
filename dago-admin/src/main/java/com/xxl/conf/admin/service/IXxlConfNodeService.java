@@ -1,11 +1,11 @@
 package com.xxl.conf.admin.service;
 
 
+import java.util.Map;
+
 import com.xxl.conf.admin.core.model.XxlConfNode;
 import com.xxl.conf.admin.core.model.XxlConfUser;
 import com.xxl.conf.admin.core.util.ReturnT;
-
-import java.util.Map;
 
 /**
  * @author xuxueli 2015-9-4 18:19:52
@@ -24,5 +24,7 @@ public interface IXxlConfNodeService {
 	public ReturnT<String> add(XxlConfNode xxlConfNode, XxlConfUser loginUser);
 
 	public ReturnT<String> update(XxlConfNode xxlConfNode, XxlConfUser loginUser);
+
+    ReturnT<String> syncConf(String env, String appname, XxlConfUser loginUser);
 
 }

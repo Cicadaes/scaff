@@ -1,10 +1,11 @@
 package com.surfilter.ps.config.web;
 
-import org.springframework.web.servlet.mvc.condition.RequestCondition;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.servlet.mvc.condition.RequestCondition;
 
 public class ApiVesrsionCondition implements RequestCondition<ApiVesrsionCondition> {
     // 路径中版本的前缀， 这里用 /v[1-9]/的形式

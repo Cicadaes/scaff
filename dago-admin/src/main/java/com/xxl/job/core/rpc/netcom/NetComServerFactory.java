@@ -1,16 +1,17 @@
 package com.xxl.job.core.rpc.netcom;
 
-import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.core.rpc.codec.RpcRequest;
-import com.xxl.job.core.rpc.codec.RpcResponse;
-import com.xxl.job.core.rpc.netcom.jetty.server.JettyServer;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cglib.reflect.FastClass;
 import org.springframework.cglib.reflect.FastMethod;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.xxl.job.core.biz.model.ReturnT;
+import com.xxl.job.core.rpc.codec.RpcRequest;
+import com.xxl.job.core.rpc.codec.RpcResponse;
+import com.xxl.job.core.rpc.netcom.jetty.server.JettyServer;
 
 /**
  * netcom init

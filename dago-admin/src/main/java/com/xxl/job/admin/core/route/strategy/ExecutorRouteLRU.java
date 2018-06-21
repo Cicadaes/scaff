@@ -1,13 +1,13 @@
 package com.xxl.job.admin.core.route.strategy;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.concurrent.ConcurrentHashMap;
+
 import com.xxl.job.admin.core.route.ExecutorRouter;
 import com.xxl.job.admin.core.trigger.XxlJobTrigger;
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.biz.model.TriggerParam;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 单个JOB对应的每个执行器，最久为使用的优先被选举

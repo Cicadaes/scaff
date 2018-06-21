@@ -1,16 +1,17 @@
 package com.xxl.job.core.thread;
 
-import com.xxl.job.core.log.XxlJobFileAppender;
-import com.xxl.job.core.util.FileUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.xxl.job.core.log.XxlJobFileAppender;
+import com.xxl.job.core.util.FileUtil;
 
 /**
  * job file clean thread

@@ -1,7 +1,8 @@
 package com.xxl.job.admin.controller.resolver;
 
-import com.xxl.job.core.biz.model.ReturnT;
-import com.xxl.job.core.util.JacksonUtil;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,8 +10,8 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.xxl.job.core.biz.model.ReturnT;
+import com.xxl.job.core.util.JacksonUtil;
 
 /**
  * common exception resolver

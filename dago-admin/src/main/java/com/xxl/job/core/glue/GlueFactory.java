@@ -1,17 +1,20 @@
 package com.xxl.job.core.glue;
 
-import com.xxl.job.core.executor.XxlJobExecutor;
-import com.xxl.job.core.handler.IJobHandler;
-import groovy.lang.GroovyClassLoader;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.annotation.AnnotationUtils;
 
-import javax.annotation.Resource;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import com.xxl.job.core.executor.XxlJobExecutor;
+import com.xxl.job.core.handler.IJobHandler;
+
+import groovy.lang.GroovyClassLoader;
 
 /**
  * glue factory, product class/object by name

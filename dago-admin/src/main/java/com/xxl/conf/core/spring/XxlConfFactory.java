@@ -1,15 +1,21 @@
 package com.xxl.conf.core.spring;
 
-import com.xxl.conf.core.XxlConfClient;
-import com.xxl.conf.core.annotation.XxlConf;
-import com.xxl.conf.core.exception.XxlConfException;
-import com.xxl.conf.core.factory.XxlConfBaseFactory;
-import com.xxl.conf.core.listener.impl.BeanRefreshXxlConfListener;
-import com.xxl.conf.core.util.FieldReflectionUtil;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
+import java.util.Objects;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.*;
-import org.springframework.beans.factory.*;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.PropertyValue;
+import org.springframework.beans.PropertyValues;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
 import org.springframework.beans.factory.config.TypedStringValue;
@@ -17,9 +23,12 @@ import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.util.ReflectionUtils;
 
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Field;
-import java.util.Objects;
+import com.xxl.conf.core.XxlConfClient;
+import com.xxl.conf.core.annotation.XxlConf;
+import com.xxl.conf.core.exception.XxlConfException;
+import com.xxl.conf.core.factory.XxlConfBaseFactory;
+import com.xxl.conf.core.listener.impl.BeanRefreshXxlConfListener;
+import com.xxl.conf.core.util.FieldReflectionUtil;
 
 /**
  * XxlConf Factory
@@ -31,14 +40,15 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 
 	private static Logger logger = LoggerFactory.getLogger(XxlConfFactory.class);
 
+
 	// ---------------------- env config ----------------------
 
-	private String envprop; // like "xxl-conf.properties" or "file:/data/webapps/xxl-conf.properties",
-							// include the following env config
+	private String envprop;		// like "xxl-conf.properties" or "file:/data/webapps/xxl-conf.properties", include the following env config
 
 	private String zkaddress;
 	private String zkdigest;
 	private String env;
+	private String mirrorfile;
 
 	public void setEnvprop(String envprop) {
 		this.envprop = envprop;
@@ -48,23 +58,27 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 		this.zkaddress = zkaddress;
 	}
 
-	public void setZkdigest(String zkdigest) {
-		this.zkdigest = zkdigest;
-	}
+    public void setZkdigest(String zkdigest) {
+        this.zkdigest = zkdigest;
+    }
 
 	public void setEnv(String env) {
 		this.env = env;
 	}
 
-	// ---------------------- init/destroy ----------------------
+    public void setMirrorfile(String mirrorfile) {
+        this.mirrorfile = mirrorfile;
+    }
+
+    // ---------------------- init/destroy ----------------------
 
 	@Override
 	public void afterPropertiesSet() {
 
-		if (envprop != null && envprop.trim().length() > 0) {
+		if (envprop!=null && envprop.trim().length()>0) {
 			XxlConfBaseFactory.init(envprop);
 		} else {
-			XxlConfBaseFactory.init(zkaddress, zkdigest, env);
+			XxlConfBaseFactory.init(zkaddress, zkdigest, env, mirrorfile);
 		}
 
 	}
@@ -74,10 +88,12 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 		XxlConfBaseFactory.destroy();
 	}
 
+
 	// ---------------------- post process / xml、annotation ----------------------
 
 	@Override
 	public boolean postProcessAfterInstantiation(final Object bean, final String beanName) throws BeansException {
+
 
 		// 1、Annotation('@XxlConf')：resolves conf + watch
 		if (!beanName.equals(this.beanName)) {
@@ -92,9 +108,9 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 						String confKey = xxlConf.value();
 						String confValue = XxlConfClient.get(confKey, xxlConf.defaultValue());
 
+
 						// resolves placeholders
-						BeanRefreshXxlConfListener.BeanField beanField = new BeanRefreshXxlConfListener.BeanField(
-								beanName, propertyName);
+						BeanRefreshXxlConfListener.BeanField beanField = new BeanRefreshXxlConfListener.BeanField(beanName, propertyName);
 						refreshBeanField(beanField, confValue, bean);
 
 						// watch
@@ -111,8 +127,7 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 	}
 
 	@Override
-	public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean,
-			String beanName) throws BeansException {
+	public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) throws BeansException {
 
 		// 2、XML('$XxlConf{...}')：resolves placeholders + watch
 		if (!beanName.equals(this.beanName)) {
@@ -129,12 +144,11 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 						String confValue = XxlConfClient.get(confKey, "");
 
 						// resolves placeholders
-						BeanRefreshXxlConfListener.BeanField beanField = new BeanRefreshXxlConfListener.BeanField(
-								beanName, propertyName);
-						// refreshBeanField(beanField, confValue, bean);
+						BeanRefreshXxlConfListener.BeanField beanField = new BeanRefreshXxlConfListener.BeanField(beanName, propertyName);
+						//refreshBeanField(beanField, confValue, bean);
 
 						Class propClass = String.class;
-						for (PropertyDescriptor item : pds) {
+						for (PropertyDescriptor item: pds) {
 							if (beanField.getProperty().equals(item.getName())) {
 								propClass = item.getPropertyType();
 							}
@@ -154,14 +168,14 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 		return super.postProcessPropertyValues(pvs, pds, bean, beanName);
 	}
 
-	// ---------------------- refresh bean with xxl conf ----------------------
+	// ---------------------- refresh bean with xxl conf  ----------------------
 
 	/**
 	 * refresh bean with xxl conf (fieldNames)
 	 */
-	public static void refreshBeanField(BeanRefreshXxlConfListener.BeanField beanField, String value, Object bean) {
+	public static void refreshBeanField(final BeanRefreshXxlConfListener.BeanField beanField, final String value, Object bean){
 		if (bean == null) {
-			bean = XxlConfFactory.beanFactory.getBean(beanField.getBeanName()); // getBean 会导致Bean提前初始化，风险较大；
+			bean = XxlConfFactory.beanFactory.getBean(beanField.getBeanName());		// getBean 会导致Bean提前初始化，风险较大；
 		}
 		if (bean == null) {
 			return;
@@ -172,8 +186,8 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 		// property descriptor
 		PropertyDescriptor propertyDescriptor = null;
 		PropertyDescriptor[] propertyDescriptors = beanWrapper.getPropertyDescriptors();
-		if (propertyDescriptors != null && propertyDescriptors.length > 0) {
-			for (PropertyDescriptor item : propertyDescriptors) {
+		if (propertyDescriptors!=null && propertyDescriptors.length>0) {
+			for (PropertyDescriptor item: propertyDescriptors) {
 				if (beanField.getProperty().equals(item.getName())) {
 					propertyDescriptor = item;
 				}
@@ -181,20 +195,22 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 		}
 
 		// refresh field: set or field
-		if (propertyDescriptor != null && propertyDescriptor.getWriteMethod() != null) {
-			beanWrapper.setPropertyValue(beanField.getProperty(), value); // support mult data types
-			logger.info(">>>>>>>>>>> xxl-conf, refreshBeanField[set] success, {}#{}:{}", beanField.getBeanName(),
-					beanField.getProperty(), value);
+		if (propertyDescriptor!=null && propertyDescriptor.getWriteMethod() != null) {
+			beanWrapper.setPropertyValue(beanField.getProperty(), value);	// support mult data types
+			logger.info(">>>>>>>>>>> xxl-conf, refreshBeanField[set] success, {}#{}:{}",
+					beanField.getBeanName(), beanField.getProperty(), value);
 		} else {
-			Field[] beanFields = bean.getClass().getDeclaredFields();
-			if (beanFields != null && beanFields.length > 0) {
-				for (Field fieldItem : beanFields) {
+
+			final Object finalBean = bean;
+			ReflectionUtils.doWithFields(bean.getClass(), new ReflectionUtils.FieldCallback() {
+				@Override
+				public void doWith(Field fieldItem) throws IllegalArgumentException, IllegalAccessException {
 					if (beanField.getProperty().equals(fieldItem.getName())) {
 						try {
 							Object valueObj = FieldReflectionUtil.parseValue(fieldItem.getType(), value);
 
 							fieldItem.setAccessible(true);
-							fieldItem.set(bean, valueObj); // support mult data types
+							fieldItem.set(finalBean, valueObj);		// support mult data types
 
 							logger.info(">>>>>>>>>>> xxl-conf, refreshBeanField[field] success, {}#{}:{}",
 									beanField.getBeanName(), beanField.getProperty(), value);
@@ -203,10 +219,30 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 						}
 					}
 				}
-			}
+			});
+
+			/*Field[] beanFields = bean.getClass().getDeclaredFields();
+			if (beanFields!=null && beanFields.length>0) {
+				for (Field fieldItem: beanFields) {
+					if (beanField.getProperty().equals(fieldItem.getName())) {
+						try {
+							Object valueObj = FieldReflectionUtil.parseValue(fieldItem.getType(), value);
+
+							fieldItem.setAccessible(true);
+							fieldItem.set(bean, valueObj);		// support mult data types
+
+							logger.info(">>>>>>>>>>> xxl-conf, refreshBeanField[field] success, {}#{}:{}",
+									beanField.getBeanName(), beanField.getProperty(), value);
+						} catch (IllegalAccessException e) {
+							throw new XxlConfException(e);
+						}
+					}
+				}
+			}*/
 		}
 
 	}
+
 
 	// ---------------------- util ----------------------
 
@@ -218,22 +254,21 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 	 * @param beanName
 	 * @return
 	 */
-	public static boolean registerBeanDefinitionIfNotExists(BeanDefinitionRegistry registry, Class<?> beanClass,
-			String beanName) {
+	public static boolean registerBeanDefinitionIfNotExists(BeanDefinitionRegistry registry, Class<?> beanClass, String beanName) {
 
 		// default bean name
 		if (beanName == null) {
 			beanName = beanClass.getName();
 		}
 
-		if (registry.containsBeanDefinition(beanName)) { // avoid beanName repeat
+		if (registry.containsBeanDefinition(beanName)) {	// avoid beanName repeat
 			return false;
 		}
 
 		String[] beanNameArr = registry.getBeanDefinitionNames();
 		for (String beanNameItem : beanNameArr) {
 			BeanDefinition beanDefinition = registry.getBeanDefinition(beanNameItem);
-			if (Objects.equals(beanDefinition.getBeanClassName(), beanClass.getName())) { // avoid className repeat
+			if (Objects.equals(beanDefinition.getBeanClassName(), beanClass.getName())) {	// avoid className repeat
 				return false;
 			}
 		}
@@ -242,6 +277,7 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 		registry.registerBeanDefinition(beanName, annotationProcessor);
 		return true;
 	}
+
 
 	private static final String placeholderPrefix = "$XxlConf{";
 	private static final String placeholderSuffix = "}";
@@ -252,7 +288,7 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 	 * @param originKey
 	 * @return
 	 */
-	private static boolean xmlKeyValid(String originKey) {
+	private static boolean xmlKeyValid(String originKey){
 		boolean start = originKey.startsWith(placeholderPrefix);
 		boolean end = originKey.endsWith(placeholderSuffix);
 		if (start && end) {
@@ -267,27 +303,25 @@ public class XxlConfFactory extends InstantiationAwareBeanPostProcessorAdapter
 	 * @param originKey
 	 * @return
 	 */
-	private static String xmlKeyParse(String originKey) {
+	private static String xmlKeyParse(String originKey){
 		if (xmlKeyValid(originKey)) {
 			// replace by xxl-conf
-			String key = originKey.substring(placeholderPrefix.length(),
-					originKey.length() - placeholderSuffix.length());
+			String key = originKey.substring(placeholderPrefix.length(), originKey.length() - placeholderSuffix.length());
 			return key;
 		}
 		return null;
 	}
 
+
 	// ---------------------- other ----------------------
 
 	private String beanName;
-
 	@Override
 	public void setBeanName(String name) {
 		this.beanName = name;
 	}
 
 	private static BeanFactory beanFactory;
-
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 		this.beanFactory = beanFactory;

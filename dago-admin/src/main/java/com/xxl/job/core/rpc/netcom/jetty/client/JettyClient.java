@@ -1,11 +1,12 @@
 package com.xxl.job.core.rpc.netcom.jetty.client;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.xxl.job.core.rpc.codec.RpcRequest;
 import com.xxl.job.core.rpc.codec.RpcResponse;
 import com.xxl.job.core.rpc.serialize.HessianSerializer;
 import com.xxl.job.core.util.HttpClientUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * jetty client

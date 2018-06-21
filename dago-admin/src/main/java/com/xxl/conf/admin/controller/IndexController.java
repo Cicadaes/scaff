@@ -1,9 +1,10 @@
 package com.xxl.conf.admin.controller;
 
 
-import com.xxl.conf.admin.controller.annotation.PermessionLimit;
-import com.xxl.conf.admin.core.util.ReturnT;
-import com.xxl.conf.admin.service.impl.LoginService;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.xxl.conf.admin.controller.annotation.PermessionLimit;
+import com.xxl.conf.admin.core.util.ReturnT;
+import com.xxl.conf.admin.service.impl.LoginService;
 
 
 /**

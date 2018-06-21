@@ -4,7 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan(basePackages= {"com.xxl.job.admin.dao","com.surfilter.ps.**.mapper"})
+@MapperScan(basePackages= {"com.xxl.job.admin.dao","com.xxl.conf.admin.dao","com.surfilter.ps.**.mapper"})
 public class MybatisConfig {
 
 }

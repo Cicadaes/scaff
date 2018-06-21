@@ -1,12 +1,13 @@
 package com.xxl.job.admin.core.jobbean;
 
-import com.xxl.job.admin.core.trigger.XxlJobTrigger;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.JobKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
+
+import com.xxl.job.admin.core.trigger.XxlJobTrigger;
 
 /**
  * http job bean

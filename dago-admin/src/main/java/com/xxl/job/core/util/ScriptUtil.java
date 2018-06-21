@@ -1,12 +1,13 @@
 package com.xxl.job.core.util;
 
-import com.xxl.job.core.log.XxlJobLogger;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.PumpStreamHandler;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import com.xxl.job.core.log.XxlJobLogger;
 
 /**
  *  1、内嵌编译器如"PythonInterpreter"无法引用扩展包，因此推荐使用java调用控制台进程方式"Runtime.getRuntime().exec()"来运行脚本(shell或python)；

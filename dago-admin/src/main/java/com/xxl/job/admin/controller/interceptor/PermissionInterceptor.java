@@ -1,14 +1,16 @@
 package com.xxl.job.admin.controller.interceptor;
 
-import com.xxl.job.admin.controller.annotation.PermessionLimit;
-import com.xxl.job.admin.core.util.CookieUtil;
-import com.xxl.job.admin.core.util.PropertiesUtil;
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import java.math.BigInteger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.math.BigInteger;
+
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.xxl.job.admin.controller.annotation.PermessionLimit;
+import com.xxl.job.admin.core.util.CookieUtil;
+import com.xxl.job.admin.core.util.PropertiesUtil;
 
 /**
  * 权限拦截, 简易版

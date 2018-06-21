@@ -1,15 +1,16 @@
 package com.xxl.job.core.rpc.netcom;
 
-import com.xxl.job.core.rpc.codec.RpcRequest;
-import com.xxl.job.core.rpc.codec.RpcResponse;
-import com.xxl.job.core.rpc.netcom.jetty.client.JettyClient;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
+import com.xxl.job.core.rpc.codec.RpcRequest;
+import com.xxl.job.core.rpc.codec.RpcResponse;
+import com.xxl.job.core.rpc.netcom.jetty.client.JettyClient;
 
 /**
  * rpc proxy

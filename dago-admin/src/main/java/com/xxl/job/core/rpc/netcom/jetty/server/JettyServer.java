@@ -1,7 +1,5 @@
 package com.xxl.job.core.rpc.netcom.jetty.server;
 
-import com.xxl.job.core.thread.ExecutorRegistryThread;
-import com.xxl.job.core.thread.TriggerCallbackThread;
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -10,6 +8,9 @@ import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.util.thread.ExecutorThreadPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.xxl.job.core.thread.ExecutorRegistryThread;
+import com.xxl.job.core.thread.TriggerCallbackThread;
 
 /**
  * rpc jetty server

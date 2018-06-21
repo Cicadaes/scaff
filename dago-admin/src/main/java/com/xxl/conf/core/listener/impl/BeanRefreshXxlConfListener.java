@@ -1,12 +1,12 @@
 package com.xxl.conf.core.listener.impl;
 
-import com.xxl.conf.core.listener.XxlConfListener;
-import com.xxl.conf.core.spring.XxlConfFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.xxl.conf.core.listener.XxlConfListener;
+import com.xxl.conf.core.spring.XxlConfFactory;
 
 /**
  * xxl conf annotaltion refresh

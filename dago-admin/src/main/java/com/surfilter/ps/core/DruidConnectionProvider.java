@@ -1,12 +1,12 @@
 package com.surfilter.ps.core;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import lombok.Data;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import org.quartz.SchedulerException;
 import org.quartz.utils.ConnectionProvider;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import com.alibaba.druid.pool.DruidDataSource;
 
 /**
  * All rights Reserved, Designed By www.1218.com.cn

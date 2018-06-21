@@ -1,21 +1,26 @@
 package com.xxl.conf.admin.controller.interceptor;
 
-import com.xxl.conf.admin.core.conf.Environment;
-import com.xxl.conf.admin.core.model.XxlConfEnv;
-import com.xxl.conf.admin.core.util.CookieUtil;
-import com.xxl.conf.admin.dao.XxlConfEnvDao;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.xxl.conf.admin.core.model.XxlConfEnv;
+import com.xxl.conf.admin.core.util.CookieUtil;
+import com.xxl.conf.admin.dao.XxlConfEnvDao;
 
 /**
  * push cookies to model as cookieMap
  * @author xuxueli 2015-12-12 18:09:04
  */
+@Component
 public class EnvInterceptor extends HandlerInterceptorAdapter {
+
+	public static final String CURRENT_ENV = "XXL_CONF_CURRENT_ENV";
 
 	@Resource
 	private XxlConfEnvDao xxlConfEnvDao;
@@ -32,7 +37,7 @@ public class EnvInterceptor extends HandlerInterceptorAdapter {
 		// current env
 		XxlConfEnv currentEnv = envList.get(0);
 
-		String currentEnvCookie = CookieUtil.getValue(request, Environment.CURRENT_ENV);
+		String currentEnvCookie = CookieUtil.getValue(request, CURRENT_ENV);
 		if (currentEnvCookie!=null && currentEnvCookie.trim().length()>0) {
 			for (XxlConfEnv envItem: envList) {
 				if (currentEnvCookie.equals(envItem.getEnv())) {
@@ -42,7 +47,7 @@ public class EnvInterceptor extends HandlerInterceptorAdapter {
 		}
 
 		request.setAttribute("envList", envList);
-		request.setAttribute(Environment.CURRENT_ENV, currentEnv);
+		request.setAttribute(CURRENT_ENV, currentEnv);
 
 		return super.preHandle(request, response, handler);
 	}

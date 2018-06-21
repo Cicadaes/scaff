@@ -1,17 +1,20 @@
 package com.xxl.conf.admin.controller.interceptor;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import java.util.HashMap;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
+
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * push cookies to model as cookieMap
  * @author xuxueli 2015-12-12 18:09:04
  */
+@Component
 public class CookieInterceptor extends HandlerInterceptorAdapter {
 
 	@Override

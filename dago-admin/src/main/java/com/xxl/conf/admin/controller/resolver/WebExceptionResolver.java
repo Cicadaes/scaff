@@ -1,22 +1,31 @@
 package com.xxl.conf.admin.controller.resolver;
 
-import com.xxl.conf.admin.core.util.JacksonUtil;
-import com.xxl.conf.admin.core.util.ReturnT;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import com.xxl.conf.admin.core.util.JacksonUtil;
+import com.xxl.conf.admin.core.util.ReturnT;
 
 /**
  * common exception resolver
+ *
+ * 		1、@ControllerAdvice：扫描所有Controller；
+ * 		2、@ControllerAdvice(annotations=RestController.class)：扫描指定注解类型的Controller；
+ * 		3、@ControllerAdvice(basePackages={"com.aaa","com.bbb"})：扫描指定package下的Controller
+ *
  * @author xuxueli 2016-1-6 19:22:18
  */
+@Component
 public class WebExceptionResolver implements HandlerExceptionResolver {
 	private static transient Logger logger = LoggerFactory.getLogger(WebExceptionResolver.class);
 
@@ -50,7 +59,7 @@ public class WebExceptionResolver implements HandlerExceptionResolver {
 		} else {
 
 			mv.addObject("exceptionMsg", errorResult.getMsg());
-			mv.setViewName("/common/common.exception");
+			mv.setViewName("common/common.exception");
 			return mv;
 		}
 

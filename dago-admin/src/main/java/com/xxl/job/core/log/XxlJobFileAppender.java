@@ -1,12 +1,19 @@
 package com.xxl.job.core.log;
 
-import com.xxl.job.core.biz.model.LogResult;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.xxl.job.core.biz.model.LogResult;
 
 /**
  * store trigger log in each log-file
