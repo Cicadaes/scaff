@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.surfilter.ps.core.entity.PageResult;
 import com.surfilter.ps.kettle.entity.Database;
-import com.xxl.job.admin.service.XxlJobService;
+import com.surfilter.ps.service.JobService;
+import com.xxl.job.admin.core.model.XxlJobInfo;
+import com.xxl.job.admin.core.schedule.XxlJobDynamicScheduler;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -26,7 +28,8 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/job/")
 public class JobController {
 	@Autowired
-	XxlJobService xxlJobService;
+	JobService jobService;
+	
 	
 	@ApiOperation(value = "定时任务/查询", notes = "定时任务/查询", response = Database.class)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "返回Api", response = PageResult.class)})
@@ -34,7 +37,8 @@ public class JobController {
     @ResponseBody
 	public PageResult query() {
 		PageResult result = new PageResult();
-		Map<String, Object> pages = xxlJobService.pageList(0, 1, 1, "", "");
+		Map<String, Object> pages = jobService.pageList(0, 1, 1, "", "");
+		XxlJobDynamicScheduler.fillJobInfo(new XxlJobInfo());
 		result.setBody(pages);
 		return result;
 	}

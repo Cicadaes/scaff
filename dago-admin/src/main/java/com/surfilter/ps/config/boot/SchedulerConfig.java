@@ -30,10 +30,10 @@ import com.xxl.job.admin.core.schedule.XxlJobDynamicScheduler;
  */
 @Configuration
 public class SchedulerConfig {
-	
+
 	@Autowired
 	DataSource dataSource;
-	
+
 	@Bean(name = "SchedulerFactory")
 	public SchedulerFactoryBean schedulerFactoryBean() throws IOException {
 		SchedulerFactoryBean factory = new SchedulerFactoryBean();
