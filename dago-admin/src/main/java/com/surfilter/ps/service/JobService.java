@@ -45,11 +45,6 @@ public class JobService {
 	
 	private static Logger logger = LoggerFactory.getLogger(JobService.class);
 
-
-
-
-	////////
-	
 	@Resource
 	private XxlJobGroupDao xxlJobGroupDao;
 	@Resource
