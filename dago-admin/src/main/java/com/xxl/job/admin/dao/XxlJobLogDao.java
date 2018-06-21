@@ -14,19 +14,19 @@ import java.util.Map;
 public interface XxlJobLogDao {
 	
 	public List<XxlJobLog> pageList(@Param("offset") int offset,
-                                    @Param("pagesize") int pagesize,
-                                    @Param("jobGroup") int jobGroup,
-                                    @Param("jobId") int jobId,
-                                    @Param("triggerTimeStart") Date triggerTimeStart,
-                                    @Param("triggerTimeEnd") Date triggerTimeEnd,
-                                    @Param("logStatus") int logStatus);
+									@Param("pagesize") int pagesize,
+									@Param("jobGroup") int jobGroup,
+									@Param("jobId") int jobId,
+									@Param("triggerTimeStart") Date triggerTimeStart,
+									@Param("triggerTimeEnd") Date triggerTimeEnd,
+									@Param("logStatus") int logStatus);
 	public int pageListCount(@Param("offset") int offset,
-                             @Param("pagesize") int pagesize,
-                             @Param("jobGroup") int jobGroup,
-                             @Param("jobId") int jobId,
-                             @Param("triggerTimeStart") Date triggerTimeStart,
-                             @Param("triggerTimeEnd") Date triggerTimeEnd,
-                             @Param("logStatus") int logStatus);
+							 @Param("pagesize") int pagesize,
+							 @Param("jobGroup") int jobGroup,
+							 @Param("jobId") int jobId,
+							 @Param("triggerTimeStart") Date triggerTimeStart,
+							 @Param("triggerTimeEnd") Date triggerTimeEnd,
+							 @Param("logStatus") int logStatus);
 	
 	public XxlJobLog load(@Param("id") int id);
 
@@ -41,12 +41,12 @@ public interface XxlJobLogDao {
 	public int triggerCountByHandleCode(@Param("handleCode") int handleCode);
 
 	public List<Map<String, Object>> triggerCountByDay(@Param("from") Date from,
-                                                       @Param("to") Date to,
-                                                       @Param("handleCode") int handleCode);
+													   @Param("to") Date to,
+													   @Param("handleCode") int handleCode);
 
 	public int clearLog(@Param("jobGroup") int jobGroup,
-                        @Param("jobId") int jobId,
-                        @Param("clearBeforeTime") Date clearBeforeTime,
-                        @Param("clearBeforeNum") int clearBeforeNum);
+						@Param("jobId") int jobId,
+						@Param("clearBeforeTime") Date clearBeforeTime,
+						@Param("clearBeforeNum") int clearBeforeNum);
 
 }

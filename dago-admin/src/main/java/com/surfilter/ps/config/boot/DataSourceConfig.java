@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Configuration;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 
-@Configuration
+//@Configuration
 public class DataSourceConfig {
 	
-//	@Bean
+//	@Bean(name="dataSource")
 //	public DataSource dataSourceTwo(){
 //	    return DruidDataSourceBuilder.create().build();
 //	}
