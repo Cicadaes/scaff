@@ -7,9 +7,6 @@ import com.xxl.job.core.rpc.codec.RpcResponse;
 import com.xxl.job.core.rpc.netcom.NetComServerFactory;
 import com.xxl.job.core.rpc.serialize.HessianSerializer;
 import com.xxl.job.core.util.HttpClientUtil;
-
-import io.swagger.annotations.Api;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

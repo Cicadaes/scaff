@@ -1,10 +1,10 @@
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: dago-application
     description: dago平台接口
-    version: 0.0.1-SNAPSHOT
+    version: 1.0
 management:
   server:
     port: 9001
@@ -27,5 +27,23 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+org:
+  quartz:
+    scheduler:
+      wrapJobExecutionInUserTransaction: false
+      instanceName: DefaultQuartzScheduler
+    rmi:
+      export: false
+      proxy: false
+    threadPool:
+      class: org.quartz.simpl.SimpleThreadPool
+      threadCount: 5 # 并发个数
+      threadPriority: 5 # 优先级
+      threadsInheritContextClassLoaderOfInitializingThread: true
+    jobStore:
+      class: org.quartz.impl.jdbcjobstore.JobStoreTX
+      tablePrefix: QRTZ_
+      misfireThreshold: 5000
+      dataSource: qzDS
 server:
   port: 8080

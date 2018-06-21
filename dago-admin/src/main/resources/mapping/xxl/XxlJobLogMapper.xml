@@ -45,7 +45,7 @@
 		SELECT <include refid="Base_Column_List" />
 		FROM XXL_JOB_QRTZ_TRIGGER_LOG AS t
 		<trim prefix="WHERE" prefixOverrides="AND | OR" >
-			<if test="jobGroup gt 0">
+			<if test="jobGroup != null and jobGroup != ''">
 				AND t.job_group = #{jobGroup}
 			</if>
 			<if test="jobId gt 0">
@@ -62,13 +62,12 @@
 			</if>
 			<if test="logStatus == 2" >
 				AND (
-					t.trigger_code NOT IN (0, 200) OR
-					t.handle_code NOT IN (0, 200)
+					(t.trigger_code <![CDATA[ > ]]> 0 AND t.trigger_code!=200) ||
+					(t.handle_code <![CDATA[ > ]]> 0 AND t.handle_code!=200)
 				)
 			</if>
 			<if test="logStatus == 3" >
-				AND t.trigger_code = 200
-				AND t.handle_code = 0
+				AND (t.trigger_code = 200 AND t.handle_code=0)
 			</if>
 		</trim>
 		ORDER BY id DESC
@@ -79,7 +78,7 @@
 		SELECT count(1)
 		FROM XXL_JOB_QRTZ_TRIGGER_LOG AS t
 		<trim prefix="WHERE" prefixOverrides="AND | OR" >
-			<if test="jobGroup gt 0">
+			<if test="jobGroup != null and jobGroup != ''">
 				AND t.job_group = #{jobGroup}
 			</if>
 			<if test="jobId gt 0">
@@ -96,13 +95,12 @@
 			</if>
 			<if test="logStatus == 2" >
 				AND (
-					t.trigger_code NOT IN (0, 200) OR
-					t.handle_code NOT IN (0, 200)
+				(t.trigger_code <![CDATA[ > ]]> 0 AND t.trigger_code!=200) ||
+				(t.handle_code <![CDATA[ > ]]> 0 AND t.handle_code!=200)
 				)
 			</if>
 			<if test="logStatus == 3" >
-				AND t.trigger_code = 200
-				AND t.handle_code = 0
+				AND (t.trigger_code = 200 AND t.handle_code=0)
 			</if>
 		</trim>
 	</select>
@@ -117,14 +115,10 @@
 	<insert id="save" parameterType="com.xxl.job.admin.core.model.XxlJobLog" useGeneratedKeys="true" keyProperty="id" >
 		INSERT INTO XXL_JOB_QRTZ_TRIGGER_LOG (
 			`job_group`,
-			`job_id`,
-			`trigger_code`,
-			`handle_code`
+			`job_id`
 		) VALUES (
 			#{jobGroup},
-			#{jobId},
-			#{triggerCode},
-			#{handleCode}
+			#{jobId}
 		);
 		<!--<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
 			SELECT LAST_INSERT_ID() 
@@ -169,14 +163,13 @@
 	</select>
 
     <select id="triggerCountByDay" resultType="java.util.Map" >
-		SELECT
-			DATE_FORMAT(trigger_time,'%Y-%m-%d') triggerDay,
-			COUNT(handle_code) triggerDayCount,
-			SUM(CASE WHEN handle_code = 0 then 1 else 0 end) as triggerDayCountRunning,
-			SUM(CASE WHEN handle_code = 200 then 1 else 0 end) as triggerDayCountSuc
-		FROM XXL_JOB_QRTZ_TRIGGER_LOG
-		WHERE trigger_time BETWEEN #{from} and #{to}
-		GROUP BY triggerDay;
+        SELECT DATE_FORMAT(trigger_time,'%Y-%m-%d') triggerDay, COUNT(id) triggerCount
+        FROM XXL_JOB_QRTZ_TRIGGER_LOG
+        WHERE trigger_time BETWEEN #{from} and #{to}
+		<if test="handleCode gt 0">
+			AND handle_code = #{handleCode}
+		</if>
+        GROUP BY triggerDay;
     </select>
 
 	<delete id="clearLog" >

@@ -31,5 +31,4 @@ public class DictController {
 	@Autowired
 	private DictService dictService;
 
-
 }

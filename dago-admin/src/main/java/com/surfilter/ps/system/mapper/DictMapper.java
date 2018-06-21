@@ -37,6 +37,7 @@ public interface DictMapper {
 	 * <p>
 	 * Description:
 	 * </p>
+	 * 
 	 * @param queryMap
 	 * @return
 	 */
