@@ -51,13 +51,13 @@ public class JobService {
 	////////
 	
 	@Resource
-	private XxlJobGroupDao xxlJobGroupDao;
+	private XxlJobGroupDao xxlJobGroupDao; //分组信息
 	@Resource
-	private XxlJobInfoDao xxlJobInfoDao;
+	private XxlJobInfoDao xxlJobInfoDao;  //任务信息
 	@Resource
-	public XxlJobLogDao xxlJobLogDao;
+	public XxlJobLogDao xxlJobLogDao;  //日志信息
 	@Resource
-	private XxlJobLogGlueDao xxlJobLogGlueDao;
+	private XxlJobLogGlueDao xxlJobLogGlueDao;  //glue信息
 	@Autowired
 	XxlJobDynamicScheduler xxlJobDynamicScheduler;
 	
