@@ -1,0 +1,56 @@
+<template>
+    <div id="axis-data-quality" ref="quality"></div>
+</template>
+
+<script>
+export default {
+  name: 'qualityStatistic',
+  data(){
+    let _this = this;
+    return {
+      options:{
+          tooltip: {
+              trigger: 'axis',
+              axisPointer: {
+                  type: 'cross'
+              }
+          },
+          xAxis:  {
+              type: 'category',
+              name: '日期',
+              boundaryGap: false,
+              data: ['2017-07-11','2017-07-12','2017-07-13','2017-07-14','2017-07-15','2017-07-16','2017-07-17','2017-07-18','2017-07-19','2017-07-20','2017-07-21','2017-07-22','2017-07-23','2017-07-24']
+          },
+          yAxis: {
+              name:'数量/个',
+              type: 'value',
+              axisPointer: {
+                  snap: true
+              }
+          },
+          series: [
+              {
+                  type:'line',
+                  smooth: true,
+                  data:[22, 16, 70, 60, 40, 20, 60,20, 60, 100, 60, 40, 20, 60],
+              }
+          ]
+      }
+
+    }
+  },
+  mounted(){
+    this.$refs.quality.style.width = this.$refs.quality.parentNode.offsetWidth - 40 + "px";
+    this.$refs.quality.style.height = '350px';
+    let axisChart = this.$echarts.init(this.$refs.quality)
+    axisChart.setOption(this.options);
+  }
+
+}
+</script>
+
+<style scoped>
+.el-card__body{
+  padding: 0;
+}
+</style>

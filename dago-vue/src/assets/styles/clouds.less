@@ -1,0 +1,76 @@
+.cloud {
+    .data-title {
+        text-align: center;
+        color: #737B84;
+    }
+    .cloud-title{
+        left: 10px;
+        top: 10px;
+        width: 158px;
+        overflow-y: auto;
+        color: #000;
+        font-weight: 500;
+        font-size: 12px;
+        ul {
+          li {
+            height: 34px;
+            font-size: 12px;
+            line-height: 2.6;
+            padding-left: 4px;
+            display: flex;
+            justify-content:space-between;
+            padding: 0px 8px;
+            cursor: pointer;
+            opacity: .9;
+          }
+          .tabActive {
+             background: linear-gradient(#24caa4,#fff ,#24caa4);
+          }
+          li:hover {
+             background: linear-gradient(#24caa4,#fff ,#24caa4);
+          }
+          span {
+            display: inline-block;
+          }
+        }
+    }
+    .currentTotal {
+        color: #48576a;
+        font-size: 13px;
+        text-align: right;
+        white-space: nowrap;
+        padding-right: 10px;
+        margin: 10px 0px -10px 0px;
+    }
+    H4 {
+        margin: 6px 0px 10px 0px;
+    }
+    .el-dialog__body {
+        padding: 10px 20px;
+    }
+    .el-button:focus {
+        border-color: #fff !important;
+        color: #fff;
+    }
+    #type{
+        float: left;
+        box-sizing: border-box;
+        text-align: center;
+        .data-audit {
+            margin: 4px;
+            min-width: 150px;
+            min-height: 150px;
+            padding: 4px;
+            border-radius: 50% 50%;
+            p {
+                font-size: 12px;
+                margin: 2px;
+                color: #fff;
+            }
+            &:hover {
+                border: none;
+                opacity: 0.9 !important;
+            }
+        }
+    }
+}

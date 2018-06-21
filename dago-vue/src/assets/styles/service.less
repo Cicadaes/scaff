@@ -1,0 +1,40 @@
+@import './index.less';
+.service-validator{
+  padding: 20px;
+  background-color: #fff;
+}
+
+.business-detail{
+
+  .filter{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0 20px;
+    padding-bottom: 15px;
+    .el-select{
+      margin-right: 5px;
+    }
+  }
+  .detail-container{
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+    .el-collapse{
+      &:first-child{
+        width: 20%;
+      }
+      &:last-child{
+        margin-left: 10px;
+        flex: 1;
+      }
+    }
+    .categories{
+      padding: 5px 10px;
+    }
+    .categories-active{
+      border: 1px dashed @blue;
+      border-radius: 5px;
+    }
+  }
+}

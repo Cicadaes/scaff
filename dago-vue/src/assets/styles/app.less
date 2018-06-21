@@ -1,0 +1,235 @@
+@import './index.less';
+@import './animate.css';
+
+.nprogress-container {
+  position: fixed !important;
+  width: 100%;
+  height: 50px;
+  z-index: 2048;
+  pointer-events: none;
+}
+
+.nprogress-container #nprogress .bar {
+  background: @blue;
+}
+
+.nprogress-container #nprogress .peg {
+  box-shadow: 0 0 10px @blue,0 0 5px @blue;
+}
+
+.nprogress-container #nprogress .spinner-icon {
+  border-top-color: @blue;
+  border-left-color: @blue;
+}
+
+.grid {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  .sider{
+    z-index: 1001;
+    border-right: 1px solid @nav-border;
+    position: fixed;
+    height: 100%;
+    background-color: @sider-background;
+    width: 180px;
+    transition: all .3s ease;
+    overflow: auto;
+  }
+  .content{
+    flex: 1;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+}
+.app-main {
+  position: absolute;
+  top: 60px;
+  left: 180px;
+  right: 0;
+  padding: 20px 0 0 0;
+  transform: translate3d(0, 0, 0);
+  min-height: 500px;
+  transition: all .3s ease;
+  .app-view {
+    padding: 15px 0;
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+.sidebar-collapse {
+  .sider{
+    overflow: inherit;
+    width: 70px;
+    .app-logo{
+      background-image: url('../mini.png');
+    }
+    .el-submenu__icon-arrow.el-icon-arrow-down{
+      display: none;
+    }
+    span{
+      display: none;
+    }
+    li.el-submenu{
+      position: relative;
+      z-index: 9999;
+      text-align: center;
+    }
+    .el-submenu{
+      &:hover{
+        ul.el-menu{
+          display: block !important;
+          li.el-submenu ul {
+            display: none !important;
+          }
+          li.el-submenu:hover {
+            ul{
+              display: block !important;
+            }
+          }
+        }
+      }
+
+      ul.el-menu{
+        position: absolute;
+        top: 0;
+        left: 70px;
+        z-index: 9999;
+        display: none!important;
+        width: 150px;
+        border-left: none;
+        list-style: none;
+        .el-menu-item.is-active{
+          // border-left: 4px solid @blue !important;
+        }
+        .el-menu-item{
+          min-height: 57px;
+          line-height: 57px;
+          &:hover{
+            // border-left: 4px solid @blue !important;
+          }
+        }
+        ul.el-menu{
+          margin-left: 80px;
+          li.el-menu-item{
+            padding-left: 30px !important;
+          }
+        }
+      }
+    }
+  }
+  .app-navbar{
+    left: 70px;
+  }
+  .app-main{
+    left: 70px;
+  }
+
+}
+
+.app-content {
+  padding: 20px;
+}
+.el-table-filter__content{
+  overflow: auto;
+  max-height: 300px !important;
+}
+.filterForm{
+  padding-top: 22px;
+}
+.filter-collapse {
+  .el-collapse-item__content{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  b{
+    color: @blue;
+  }
+}
+.el-table{
+  table{
+    tbody{
+      .cell{
+        span{
+          white-space:nowrap !important;
+          overflow:hidden;
+          text-overflow:ellipsis !important;
+        }
+
+      }
+      tr {
+          background-color: transparent;
+      }
+    }
+  }
+}
+.progress-status{
+  margin-bottom: -20px;
+  margin-top: -20px;
+  height: 40px;
+  margin-left: -20px;
+  margin-right: -20px;
+  background-position: 50%;
+  position: absolute;
+}
+.demo-table-expand {
+  font-size: 0;
+}
+.demo-table-expand label {
+  width: 20%;
+  color: #99a9bf;
+}
+.demo-table-expand {
+  .el-form-item {
+    margin-right: 0 !important;
+    margin-bottom: 0;
+    width: 50%;
+  }
+}
+.el-table {
+  .tag{
+    height: 70%;
+    line-height: 25px;
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+    font-size: 15px;
+  }
+  .danger-row {
+    background: #f5c9c9;
+    .el-progress-bar__outer{
+      background-color: #ff4949;
+    }
+  }
+  .positive-row {
+    background: #e2f0e4;
+  }
+  .block {
+    position: relative;
+    margin: 20px 0 0;
+    text-align: right;
+  }
+  .error{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ff4949;
+    text-align: left;
+  }
+
+}
+.el-dialog__headerbtn{
+  text-align: right;
+  flex: 1;
+}
+.v-modal {
+  display: none;
+}
+.el-message-box__wrapper{
+  background-color: #000 !important;
+  background-color: rgba(0,0,0,0.5) !important;
+
+}

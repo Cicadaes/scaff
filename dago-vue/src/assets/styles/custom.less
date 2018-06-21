@@ -1,0 +1,22 @@
+.keyframes (@name, @frames) {
+  @-webkit-keyframes @name {
+     @frames();
+  }
+  @-moz-keyframes @name {
+     @frames();
+  }
+  @-ms-keyframes @name {
+     @frames();
+  }
+  @-o-keyframes @name {
+     @frames();
+  }
+  @keyframes @name {
+     @frames();
+  }
+}
+.keyframes (pound, { to { transform: scale(1.2)} });
+
+.pound-info {
+  animation: pound 0.25s infinite alternate;
+}
