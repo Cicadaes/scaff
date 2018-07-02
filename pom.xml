@@ -7,8 +7,10 @@
 		<module>dago-core</module>
 		<module>dago-vue</module>
 		<module>dago-client</module>
-    <module>dago-example</module>
-  </modules>
+    	<module>dago-example</module>
+		<module>dago-cloud</module>
+		<module>dago-starter-ftp</module>
+	</modules>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
