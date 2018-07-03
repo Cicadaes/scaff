@@ -1,12 +1,14 @@
 package com.surfilter.ps.starter.ftp;
 
+import java.io.IOException;
+
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
-
-import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * All rights Reserved, Designed By www.1218.com.cn
@@ -22,56 +24,44 @@ import java.io.IOException;
  */
 public class FTPClientFactory extends BasePooledObjectFactory<FTPClient> {
 
-//    private static Logger logger =Logger.getLogger(FTPClientFactory.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(FTPClientFactory.class);
 
-    private FtpPoolConfig ftpPoolConfig;
+	private static Logger logger = LoggerFactory.getLogger(FTPClientFactory.class);
+    private FTPConfig ftpConfig;
 
-
-
-    public FtpPoolConfig getFtpPoolConfig() {
-        return ftpPoolConfig;
+    public FTPClientFactory(FTPConfig ftpConfig) {
+        this.ftpConfig = ftpConfig;
     }
-
-    public void setFtpPoolConfig(FtpPoolConfig ftpPoolConfig) {
-        this.ftpPoolConfig = ftpPoolConfig;
-    }
-
     /**
      * 新建对象
      */
     @Override
     public FTPClient create() throws Exception {
         FTPClient ftpClient = new FTPClient();
-        ftpClient.setConnectTimeout(ftpPoolConfig.getConnectTimeOut());
+        ftpClient.setConnectTimeout(ftpConfig.getClientTimeout());
         try {
-
-//            logger.info("连接ftp服务器:" +ftpPoolConfig.getHost()+":"+ftpPoolConfig.getPort());
-            ftpClient.connect(ftpPoolConfig.getHost(), ftpPoolConfig.getPort());
-
+            ftpClient.connect(ftpConfig.getHost(), ftpConfig.getPort());
             int reply = ftpClient.getReplyCode();
             if (!FTPReply.isPositiveCompletion(reply)) {
                 ftpClient.disconnect();
-//                logger.error("FTPServer 拒绝连接");
+                logger.error("FTPServer 拒绝连接");
                 return null;
             }
-            boolean result = ftpClient.login(ftpPoolConfig.getUsername(),ftpPoolConfig.getPassword());
+            boolean result = ftpClient.login(ftpConfig.getUsername(),ftpConfig.getPassword());
             if (!result) {
-//                logger.error("ftpClient登录失败!");
-                throw new Exception("ftpClient登录失败! userName:"+ ftpPoolConfig.getUsername() + ", password:"
-                        + ftpPoolConfig.getPassword());
+                logger.error("ftpClient登陆失败!");
+                throw new Exception("ftpClient登陆失败! userName:"+ ftpConfig.getUsername() + " ; password:"
+                        + ftpConfig.getPassword());
             }
-
-            ftpClient.setControlEncoding(ftpPoolConfig.getControlEncoding());
-            ftpClient.setBufferSize(ftpPoolConfig.getBufferSize());
-            ftpClient.setFileType(ftpPoolConfig.getFileType());
-            ftpClient.setDataTimeout(ftpPoolConfig.getDataTimeout());
-            ftpClient.setUseEPSVwithIPv4(ftpPoolConfig.isUseEPSVwithIPv4());
-            if(ftpPoolConfig.isPassiveMode()){
-//                logger.info("进入ftp被动模式");
-                ftpClient.enterLocalPassiveMode();//进入被动模式
+            ftpClient.setFileType(ftpConfig.getTransferFileType());
+            ftpClient.setBufferSize(ftpConfig.getBufferSize());
+            ftpClient.setControlEncoding(ftpConfig.getEncoding());
+            if (ftpConfig.isPassiveMode()) {
+                ftpClient.enterLocalPassiveMode();
             }
+            ftpClient.changeWorkingDirectory(ftpConfig.getWorkingDirectory());
         } catch (IOException e) {
-//            logger.error("FTP连接失败：", e);
+            logger.error("FTP连接失败：", e);
         }
         return ftpClient;
     }
@@ -100,31 +90,12 @@ public class FTPClientFactory extends BasePooledObjectFactory<FTPClient> {
         boolean connect = false;
         try {
             connect = ftpClient.sendNoOp();
+            if(connect){                
+                ftpClient.changeWorkingDirectory(ftpConfig.getWorkingDirectory());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return connect;
-    }
-
-
-    /**
-     *  No-op.
-     *
-     *  @param p ignored
-     */
-    @Override
-    public void activateObject(PooledObject<FTPClient> p) throws Exception {
-        // The default implementation is a no-op.
-    }
-
-    /**
-     *  No-op.
-     *
-     * @param p ignored
-     */
-    @Override
-    public void passivateObject(PooledObject<FTPClient> p)
-            throws Exception {
-        // The default implementation is a no-op.
     }
 }

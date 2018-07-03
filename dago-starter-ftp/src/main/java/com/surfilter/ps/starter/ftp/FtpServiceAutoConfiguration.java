@@ -19,12 +19,12 @@ import org.springframework.context.annotation.Configuration;
  * 注意：本内容仅限于任子行网络技术股份有限公司内部传阅，禁止外泄以及用于其他的商业目
  */
 @Configuration
-@EnableConfigurationProperties(FtpPoolConfig.class)
+@EnableConfigurationProperties(FTPConfig.class)
 @ConditionalOnClass(FtpService.class)
 @ConditionalOnProperty(prefix="ftp",value="enabled",matchIfMissing=true)
 public class FtpServiceAutoConfiguration {
     @Autowired
-    private FtpPoolConfig ftpPoolConfig;
+    private FTPConfig ftpConfig;
 
     @Bean
     public FTPClientPool ftpClientPool(){
@@ -34,15 +34,8 @@ public class FtpServiceAutoConfiguration {
 
     @Bean
     public FTPClientFactory clientFactory(){
-        FTPClientFactory clientFactory = new  FTPClientFactory();
-        clientFactory.setFtpPoolConfig(ftpPoolConfig());
+        FTPClientFactory clientFactory = new FTPClientFactory(ftpConfig);
         return clientFactory;
-    }
-
-    @Bean
-    public FtpPoolConfig ftpPoolConfig(){
-        FtpPoolConfig ftpPoolConfig = new FtpPoolConfig();
-        return ftpPoolConfig;
     }
 
 }

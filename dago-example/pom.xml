@@ -49,7 +49,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.surfilter.ps.starter</groupId>
-			<artifactId>ftp</artifactId>
+			<artifactId>dago-starter-ftp</artifactId>
 			<version>1.0</version>
 		</dependency>
 	</dependencies>
