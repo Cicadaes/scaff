@@ -11,8 +11,10 @@ import java.net.SocketTimeoutException;
 import java.security.AccessControlException;
 import java.util.Random;
 
+import com.surfilter.ps.starter.ftp.FTPClientPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -29,9 +31,9 @@ import org.springframework.context.ApplicationContext;
 public class Application {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 	private static Application app = null;
-
 	// 关闭端口
-	private int port = 19001;
+	private int port = 1900
+	1;
 	// 主机地址
 	private String address = "localhost";
 	// 关闭系统指令
