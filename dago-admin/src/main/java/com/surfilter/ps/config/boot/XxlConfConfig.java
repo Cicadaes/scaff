@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 public class XxlConfConfig {
     private Logger logger = LoggerFactory.getLogger(XxlConfConfig.class);
 
+
 //    @Bean(initMethod = "init", destroyMethod = "destroy")
 //    public XxlConfFactory xxlConfFactory() {
 //        XxlConfFactory xxlConf = new XxlConfFactory();

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.surfilter.ps.core.entity.PageResult;
-import com.surfilter.ps.kettle.entity.Database;
 import com.surfilter.ps.service.JobService;
 import com.xxl.job.admin.core.model.XxlJobInfo;
 import com.xxl.job.admin.core.schedule.XxlJobDynamicScheduler;
@@ -31,7 +30,7 @@ public class JobController {
 	JobService jobService;
 	
 	
-	@ApiOperation(value = "定时任务/查询", notes = "定时任务/查询", response = Database.class)
+	@ApiOperation(value = "定时任务/查询", notes = "定时任务/查询", response = String.class)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "返回Api", response = PageResult.class)})
 	@GetMapping("query/")
     @ResponseBody

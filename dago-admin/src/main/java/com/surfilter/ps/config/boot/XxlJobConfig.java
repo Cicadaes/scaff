@@ -1,7 +1,10 @@
 package com.surfilter.ps.config.boot;
 
+import com.xxl.job.admin.core.schedule.XxlJobDynamicScheduler;
+import org.quartz.Scheduler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,6 +12,11 @@ import com.xxl.job.admin.service.XxlJobService;
 import com.xxl.job.admin.service.impl.AdminBizImpl;
 import com.xxl.job.admin.service.impl.XxlJobServiceImpl;
 import com.xxl.job.core.biz.AdminBiz;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+
+import javax.sql.DataSource;
+import java.io.IOException;
 
 /**
  * All rights Reserved, Designed By www.1218.com.cn
@@ -26,6 +34,25 @@ import com.xxl.job.core.biz.AdminBiz;
 public class XxlJobConfig {
 
     private Logger logger = LoggerFactory.getLogger(XxlConfConfig.class);
+
+    @Bean(name = "SchedulerFactory")
+    public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) throws IOException {
+        SchedulerFactoryBean factory = new SchedulerFactoryBean();
+        factory.setDataSource(dataSource);
+        factory.setAutoStartup(true);
+        factory.setStartupDelay(20);
+        factory.setOverwriteExistingJobs(true);
+        factory.setApplicationContextSchedulerContextKey("applicationContextKey");
+        factory.setConfigLocation(new ClassPathResource("/config/quartz.properties"));
+        return factory;
+    }
+
+    @Bean(initMethod = "init", destroyMethod = "destroy")
+    public XxlJobDynamicScheduler getXxlJobDynamicScheduler(@Qualifier("SchedulerFactory") Scheduler scheduler) {
+        XxlJobDynamicScheduler bean = new XxlJobDynamicScheduler();
+        bean.setScheduler(scheduler);
+        return bean;
+    }
     
     @Bean
     public AdminBiz adminBiz() {

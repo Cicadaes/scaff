@@ -26,7 +26,6 @@ import org.springframework.web.context.WebApplicationContext;
   
 import com.alibaba.fastjson.JSON;
 import com.surfilter.ps.Application;
-import com.surfilter.ps.kettle.entity.Database;
 
 /**
  * @author AlexYao
@@ -75,7 +74,7 @@ public class DatabaseControllerTest {
     @Test  
     public void saveUserTest() throws Exception {  
         // 构造添加的用户信息  
-        Database user = new Database();  
+        String user = new String();
         System.out.println(JSON.toJSONString(user));  
         // 调用接口，传入添加的用户参数  
         String response = mockMvc  
@@ -92,8 +91,8 @@ public class DatabaseControllerTest {
      * @throws Exception 
      */  
     @Test  
-    public void updateUserTest() throws Exception {  
-    	Database user = new Database();  
+    public void updateUserTest() throws Exception {
+        String user = new String();
         // 调用接口，传入添加的用户参数  
         String response = mockMvc  
                 .perform(post("/user/updateUser").contentType(MediaType.APPLICATION_JSON)  

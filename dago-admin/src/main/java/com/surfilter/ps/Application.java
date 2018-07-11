@@ -18,6 +18,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 
 /**
  * 
@@ -25,6 +27,7 @@ import org.springframework.context.ApplicationContext;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
+@ComponentScan(basePackages={"com.surfilter.ps","com.surfilter.ps"})
 public class Application {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 	private static Application app = null;
