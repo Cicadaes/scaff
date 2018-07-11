@@ -1,28 +1,23 @@
 package com.surfilter.ps.starter.ftp;
+
+import java.lang.annotation.*;
+
 /**
  * All rights Reserved, Designed By www.1218.com.cn
  *
  * @version V1.0
- * @Title: FtpService
- * @Package PACKAGE_NAME
+ * @Title: TargetFtpDataSource
+ * @Package com.surfilter.ps.starter.ftp
  * @Description:
  * @author: Alex
- * @date: 2018-07-02 下午9:52
+ * @date: 2018-07-08 上午9:26
  * @Copyright: 2018 www.1218.com.cn Inc. All rights reserved.
  * 注意：本内容仅限于任子行网络技术股份有限公司内部传阅，禁止外泄以及用于其他的商业目
  */
-public class FtpService {
-    private String msg;
+@Target({ ElementType.FIELD, ElementType.TYPE })
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface TargetFtpDataSource {
 
-    public String sayHello(){
-        return "Hello "+msg;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    };
+    int value();
 }

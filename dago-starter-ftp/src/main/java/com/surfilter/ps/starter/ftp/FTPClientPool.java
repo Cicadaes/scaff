@@ -30,18 +30,16 @@ public class FTPClientPool {
 	public FTPClientPool(FTPConfig config) {
 		// 初始化对象池配置
 		GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
-		poolConfig.setBlockWhenExhausted(Boolean.parseBoolean(pro.getProperty("ftpClient_blockWhenExhausted")));
-		poolConfig.setMaxWaitMillis(Long.parseLong(pro.getProperty("ftpClient_maxWait")));
-		poolConfig.setMinIdle(Integer.parseInt(pro.getProperty("ftpClient_minIdle")));
-		poolConfig.setMaxIdle(Integer.parseInt(pro.getProperty("ftpClient_maxIdle")));
-		poolConfig.setMaxTotal(Integer.parseInt(pro.getProperty("ftpClient_maxTotal")));
-		poolConfig.setTestOnBorrow(Boolean.parseBoolean(pro.getProperty("ftpClient_testOnBorrow")));
-		poolConfig.setTestOnReturn(Boolean.parseBoolean(pro.getProperty("ftpClient_testOnReturn")));
-		poolConfig.setTestOnCreate(Boolean.parseBoolean(pro.getProperty("ftpClient_testOnCreate")));
-		poolConfig.setTestWhileIdle(Boolean.parseBoolean(pro.getProperty("ftpClient_testWhileIdle")));
-		poolConfig.setLifo(Boolean.parseBoolean(pro.getProperty("ftpClient_lifo")));
+		poolConfig.setMaxWaitMillis(config.getMaxWait());
+		poolConfig.setMinIdle(config.getMinIdle());
+		poolConfig.setMaxIdle(config.getMaxIdle());
+		poolConfig.setMaxTotal(config.getMaxTotal());
+		poolConfig.setTestOnBorrow(true);
+		poolConfig.setTestOnReturn(true);
+		poolConfig.setTestOnCreate(true);
+		poolConfig.setTestWhileIdle(true);
 		// 初始化对象池
-		ftpClientPool = new GenericObjectPool<FTPClient>(new FTPClientFactory(ftpConfig), poolConfig);
+		ftpClientPool = new GenericObjectPool<FTPClient>(new FTPClientFactory(config), poolConfig);
 	}
 
 	public FTPClient borrowObject() throws Exception {
@@ -55,7 +53,6 @@ public class FTPClientPool {
 	}
 
 	public void returnObject(FTPClient ftpClient) {
-
 		/*
 		 * System.out.println("归还前");
 		 * System.out.println("活动"+ftpClientPool.getNumActive());

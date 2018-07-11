@@ -6,6 +6,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * All rights Reserved, Designed By www.1218.com.cn
  *
@@ -19,23 +22,41 @@ import org.springframework.context.annotation.Configuration;
  * 注意：本内容仅限于任子行网络技术股份有限公司内部传阅，禁止外泄以及用于其他的商业目
  */
 @Configuration
-@EnableConfigurationProperties(FTPConfig.class)
-@ConditionalOnClass(FtpService.class)
-@ConditionalOnProperty(prefix="ftp",value="enabled",matchIfMissing=true)
+@EnableConfigurationProperties(FtpStarterConfig.class)
+@ConditionalOnClass(FTPClientPool.class)
+@ConditionalOnProperty(prefix="dago.ftp",value="enabled",matchIfMissing=true)
 public class FtpServiceAutoConfiguration {
+
     @Autowired
-    private FTPConfig ftpConfig;
+    private FtpStarterConfig starterConfig;
 
     @Bean
     public FTPClientPool ftpClientPool(){
-        FTPClientPool ftpClientPool  = new FTPClientPool(clientFactory());
+        FTPConfig ftpConfig = new FTPConfig();
+        FTPClientPool ftpClientPool  = new FTPClientPool(ftpConfig);
         return ftpClientPool;
     }
 
-    @Bean
-    public FTPClientFactory clientFactory(){
-        FTPClientFactory clientFactory = new FTPClientFactory(ftpConfig);
-        return clientFactory;
+    public Map<Integer,FTPClientPool> ftpPools(){
+        Map<Integer,FTPClientPool> ftps = new HashMap<Integer,FTPClientPool>();
+        for (int i = 0; i < starterConfig.getHost().size(); i++) {
+            String host =  starterConfig.getHost().get(i);
+            if(starterConfig.getUsername().get(i)!=null){
+                String username =  starterConfig.getUsername().get(i);
+            }
+            if(starterConfig.getUsername().get(i)!=null){
+                String password =  starterConfig.getPassword().get(i);
+            }else{
+//                throw new Exception("密码必填");
+            }
+            //转换为连接池配置类
+            FTPConfig ftpConfig = new FTPConfig();
+            FTPClientPool ftpClientPool  = new FTPClientPool(ftpConfig);
+//            FTPConfig ftpConfig = new FTPConfig();
+
+        }
+        return new HashMap<Integer,FTPClientPool>();
     }
+
 
 }

@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version V1.0
  * @Title: FtpPoolConfig
  * @Package com.surfilter.ps.starter.ftp
- * @Description: ftp配置参数对象 继承自GenericObjectPoolConfig
+ * @Description: ftp配置参数对象
  * @author: Alex
  * @date: 2018-07-03 上午9:59
  * @Copyright: 2018 www.1218.com.cn Inc. All rights reserved.
@@ -26,7 +26,7 @@ public class FTPConfig {
 	private boolean passiveMode=true; //传输模式
 	private String encoding = "utf-8"; //传输编码方式
 	private int clientTimeout = 5000;// ftp 连接超时时间 毫秒
-	private int threadNum;
+	private int threadNum=10;
 	private int transferFileType = 2;// 传输数据格式 2表binary二进制数据
 	private boolean renameUploaded;
 	private int retryTimes = 3;
@@ -35,10 +35,10 @@ public class FTPConfig {
 	private int dataTimeout = 120000;
 	private boolean useEPSVwithIPv4 = false;
 	
-	private int maxTotal;
-	private int maxIdle;
-	private int minIdle;
-	private int maxWait;
+	private int maxTotal;//最大连接数
+	private int maxIdle;//最大idle数
+	private int minIdle;//最小idle数
+	private int maxWait;//最大等待时间
 
 	public String getHost() {
 		return host;
@@ -160,4 +160,35 @@ public class FTPConfig {
 		this.useEPSVwithIPv4 = useEPSVwithIPv4;
 	}
 
+	public int getMaxTotal() {
+		return maxTotal;
+	}
+
+	public void setMaxTotal(int maxTotal) {
+		this.maxTotal = maxTotal;
+	}
+
+	public int getMaxIdle() {
+		return maxIdle;
+	}
+
+	public void setMaxIdle(int maxIdle) {
+		this.maxIdle = maxIdle;
+	}
+
+	public int getMinIdle() {
+		return minIdle;
+	}
+
+	public void setMinIdle(int minIdle) {
+		this.minIdle = minIdle;
+	}
+
+	public int getMaxWait() {
+		return maxWait;
+	}
+
+	public void setMaxWait(int maxWait) {
+		this.maxWait = maxWait;
+	}
 }
