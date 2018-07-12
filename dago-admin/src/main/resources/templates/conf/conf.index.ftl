@@ -7,7 +7,7 @@
 
 <#import "../common/common.macro.ftl" as netCommon>
 <@netCommon.commonStyle />
-<link rel="stylesheet" href="${request.contextPath}/static/adminlte/plugins/datatables/dataTables.bootstrap.css">
+<link rel="stylesheet" href="${request.contextPath}/static/admin/adminlte/plugins/datatables/dataTables.bootstrap.css">
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini <#if cookieMap?exists && cookieMap["adminlte_settings"]?exists && "off" == cookieMap["adminlte_settings"].value >sidebar-collapse</#if> ">
@@ -197,11 +197,11 @@
 
 	</script>
 
-    <script src="${request.contextPath}/static/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="${request.contextPath}/static/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
-    <script src="${request.contextPath}/static/adminlte/plugins/daterangepicker/moment.min.js"></script>
-    <script src="${request.contextPath}/static/js/xxl.alert.1.js"></script>
-    <script src="${request.contextPath}/static/js/conf.1.js"></script>
+    <script src="${request.contextPath}/static/admin/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="${request.contextPath}/static/admin/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="${request.contextPath}/static/admin/adminlte/plugins/daterangepicker/moment.min.js"></script>
+    <script src="${request.contextPath}/static/admin/js/xxl.alert.1.js"></script>
+    <script src="${request.contextPath}/static/admin/js/conf.1.js"></script>
 	
 </body>
 </html>

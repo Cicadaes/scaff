@@ -1,17 +1,15 @@
 package com.surfilter.ps.web;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.surfilter.ps.domain.Demo;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 @Api(tags = "示例")
 @RestController
 //@RequestMapping("/{version}/")
@@ -27,6 +25,8 @@ public class HelloController {
         System.out.println("haha1..........");
         return "hello1";
     }
+
+
 	
 //	@GetMapping("hello/")
 //    @ApiVersion(2)

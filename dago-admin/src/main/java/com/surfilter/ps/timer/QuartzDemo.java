@@ -1,15 +1,14 @@
 package com.surfilter.ps.timer;
 
+import com.surfilter.ps.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-
-import com.surfilter.ps.service.DemoService;
 
 //@Component
 //@EnableScheduling
 public class QuartzDemo {
 	@Autowired
-	DemoService demoService;
+    DemoService demoService;
 	
 	@Scheduled(cron = "0 0/1 * * * ?") // 每分钟执行一次
     public void work() throws Exception {

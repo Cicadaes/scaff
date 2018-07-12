@@ -9,11 +9,11 @@
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<div class="login-logo">
-			<a><b>XXL</b>CONF</a>
+			<a><b>Scaff</b>基础支撑平台</a>
 		</div>
 		<form id="loginForm" method="post" >
 			<div class="login-box-body">
-				<p class="login-box-msg">配置管理中心</p>
+				<p class="login-box-msg">基础支撑平台管理中心</p>
 				<div class="form-group has-feedback">
 	            	<input type="text" name="userName" class="form-control" placeholder="请输入登陆账号" value="admin" maxlength="50" >
 	            	<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
