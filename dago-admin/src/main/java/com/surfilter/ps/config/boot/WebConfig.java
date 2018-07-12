@@ -1,8 +1,8 @@
 package com.surfilter.ps.config.boot;
 
-import com.xxl.conf.admin.controller.interceptor.CookieInterceptor;
-import com.xxl.conf.admin.controller.interceptor.EnvInterceptor;
-import com.xxl.conf.admin.controller.interceptor.PermissionInterceptor;
+import com.surfilter.ps.config.web.interceptor.CookieInterceptor;
+import com.surfilter.ps.config.web.interceptor.EnvInterceptor;
+import com.surfilter.ps.config.web.interceptor.PermissionInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -15,12 +15,12 @@ import javax.annotation.Resource;
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport {
 
-	@Autowired
-	private PermissionInterceptor permissionInterceptor;
-	@Autowired
-	private EnvInterceptor envInterceptor;
-	@Autowired
-	private CookieInterceptor cookieInterceptor;
+//	@Autowired
+//	private PermissionInterceptor permissionInterceptor;
+//	@Autowired
+//	private EnvInterceptor envInterceptor;
+//	@Autowired
+//	private CookieInterceptor cookieInterceptor;
 
 	// @Override
 	// @Bean
@@ -43,9 +43,9 @@ public class WebConfig extends WebMvcConfigurationSupport {
 	//增加规律器
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(permissionInterceptor).addPathPatterns("/**");
-		registry.addInterceptor(envInterceptor).addPathPatterns("/**");
-		registry.addInterceptor(cookieInterceptor).addPathPatterns("/**");
+//		registry.addInterceptor(permissionInterceptor).addPathPatterns("/**");
+//		registry.addInterceptor(envInterceptor).addPathPatterns("/**");
+//		registry.addInterceptor(cookieInterceptor).addPathPatterns("/**");
 		super.addInterceptors(registry);
 	}
 

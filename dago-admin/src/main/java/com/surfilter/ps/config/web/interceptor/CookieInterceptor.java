@@ -1,5 +1,6 @@
-package com.xxl.conf.admin.controller.interceptor;
+package com.surfilter.ps.config.web.interceptor;
 
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -13,7 +14,7 @@ import java.util.HashMap;
  * push cookies to model as cookieMap
  * @author xuxueli 2015-12-12 18:09:04
  */
-@Component
+@Configurable
 public class CookieInterceptor extends HandlerInterceptorAdapter {
 
 	@Override

@@ -27,7 +27,7 @@ import org.springframework.context.annotation.ComponentScans;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages={"com.surfilter.ps","com.surfilter.ps"})
+//@ComponentScan(basePackages={"com.surfilter.ps"})
 public class Application {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 	private static Application app = null;

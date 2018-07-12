@@ -1,11 +1,10 @@
 package com.xxl.conf.admin.dao;
 
-import java.util.List;
-
+import com.xxl.conf.admin.core.model.XxlConfUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.xxl.conf.admin.core.model.XxlConfUser;
+import java.util.List;
 
 /**
  * @author xuxueli 2018-03-01

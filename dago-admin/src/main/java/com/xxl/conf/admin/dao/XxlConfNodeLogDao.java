@@ -1,11 +1,10 @@
 package com.xxl.conf.admin.dao;
 
-import java.util.List;
-
+import com.xxl.conf.admin.core.model.XxlConfNodeLog;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.xxl.conf.admin.core.model.XxlConfNodeLog;
+import java.util.List;
 
 /**
  * Created by xuxueli on 16/10/8.
@@ -18,7 +17,7 @@ public interface XxlConfNodeLogDao {
 	public void add(XxlConfNodeLog xxlConfNode);
 
 	public int deleteTimeout(@Param("env") String env,
-							 @Param("key") String key,
-							 @Param("length") int length);
+                             @Param("key") String key,
+                             @Param("length") int length);
 
 }

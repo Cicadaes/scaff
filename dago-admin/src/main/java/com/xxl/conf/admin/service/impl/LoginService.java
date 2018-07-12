@@ -1,19 +1,17 @@
 package com.xxl.conf.admin.service.impl;
 
-import java.math.BigInteger;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.util.DigestUtils;
-
 import com.xxl.conf.admin.core.model.XxlConfUser;
 import com.xxl.conf.admin.core.util.CookieUtil;
 import com.xxl.conf.admin.core.util.JacksonUtil;
 import com.xxl.conf.admin.core.util.ReturnT;
 import com.xxl.conf.admin.dao.XxlConfUserDao;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.util.DigestUtils;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.math.BigInteger;
 
 /**
  * Login Service

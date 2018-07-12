@@ -1,4 +1,4 @@
-//package com.xxl.conf.admin.core.config;
+package com.xxl.conf.admin.core.config;//package com.xxl.conf.admin.core.config;
 //
 //import org.apache.tomcat.jdbc.pool.DataSource;
 //import org.apache.tomcat.jdbc.pool.PoolProperties;

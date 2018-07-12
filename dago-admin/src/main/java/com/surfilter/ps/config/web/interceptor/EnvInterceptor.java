@@ -1,8 +1,9 @@
-package com.xxl.conf.admin.controller.interceptor;
+package com.surfilter.ps.config.web.interceptor;
 
 import com.xxl.conf.admin.core.model.XxlConfEnv;
 import com.xxl.conf.admin.core.util.CookieUtil;
 import com.xxl.conf.admin.dao.XxlConfEnvDao;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * push cookies to model as cookieMap
  * @author xuxueli 2015-12-12 18:09:04
  */
-@Component
+@Configurable
 public class EnvInterceptor extends HandlerInterceptorAdapter {
 
 	public static final String CURRENT_ENV = "XXL_CONF_CURRENT_ENV";
