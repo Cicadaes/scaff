@@ -3,6 +3,8 @@ package com.surfilter.ps.core;
 import org.apache.commons.exec.*;
 
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -44,9 +46,9 @@ public class CommonUtil {
      * 带返回结果的命令执行
      * @return
      */
-    public String execCmdWithResult(String command, String charset) {
+    public Map<String,String> execCmdWithResult(String command, String charset) {
+        Map<String,String> msg = new HashMap<String,String>();
         try {
-            command = "df -h";
             //接收正常结果流
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             //接收异常结果流
@@ -61,12 +63,16 @@ public class CommonUtil {
             exec.setStreamHandler(streamHandler);
             exec.execute(commandline);
             //不同操作系统注意编码，否则结果乱码
+
             String out = outputStream.toString(charset);
             String error = errorStream.toString(charset);
-            return out;
+            msg.put("out",out);
+            msg.put("error",error);
+            return msg;
         } catch (Exception e) {
             e.printStackTrace();
-            return e.getMessage();
+            msg.put("error",e.getMessage());
+            return msg;
         }
     }
 
@@ -107,8 +113,9 @@ public class CommonUtil {
     public static void main(String [] ages){
         CommonUtil util = new CommonUtil();
         util.all();
-        String out = util.execCmdWithResult("","utf-8");
-        System.out.printf(out);
+        Map<String,String> msg = util.execCmdWithResult("df -h","utf-8");
+        System.out.println(msg.get("out"));
+        System.out.println(msg.get("err"));
     }
 
 }
